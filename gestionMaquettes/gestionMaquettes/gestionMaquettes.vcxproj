@@ -80,6 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gestionMaquettes.cpp" />
+    <ClCompile Include="UE.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
