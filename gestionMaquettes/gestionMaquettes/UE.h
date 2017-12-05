@@ -10,7 +10,6 @@ public:
 private:
 	int d_ECTS;
 	Matiere* d_UE;
-
 };
 
 #endif
