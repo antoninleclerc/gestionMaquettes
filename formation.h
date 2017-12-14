@@ -9,15 +9,17 @@ class formation
 	public : 
 		formation (int nbAnnee, const std:: string intitule ) ; 
 		~formation() ; 
-		int nbAnnee() const ;
-		std:: string intitule() ; 
-		void ajouterFormation (int nbAnnee, const std :: string intitule, const maquette & m) ; 
-			
+		int nombreAnnee() const ;
+		std:: string intitule() const ; 
+		void modifierNombreAnnee (int nombreAnnee) ; 
+		void modifierIntitule(std :: string intitule) ;
+		void ajouterMaquette (const maquette & m) ; 
+		bool supprimerMaquette (int numeroSemestre) ;	
 	
 	private : 
-		int d_nbAnnee ; 
+		int d_nombreAnnee ; 
 		std:: string d_intitule ; 
-		vector <maquette> d_formations ;
+		vector <maquette*> d_formations ;
 		
 	
 }
