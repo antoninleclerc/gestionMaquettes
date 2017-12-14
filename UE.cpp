@@ -61,7 +61,7 @@ int UE::totalNombreHeures() const
 	return totalHeuresCM()+totalHeuresTD()+totalHeuresTP();
 }
 
-void UE::ajouterECUE(const ECUE* &ecue)
+void UE::ajouterECUE(ECUE*ecue)
 {
 	d_UE.push_back(ecue);
 }
@@ -77,13 +77,15 @@ void UE::modifierECTS(int ECTS)
 bool UE::supprimerECUE(const std::string &code)
 {
 	int i=0;
-	while(i<d_UE.size() || code!=d_UE[i].code())
+	while(i<d_UE.size() || code!=d_UE[i]->code())
 	{
 		i++;
 	}
-	if(code==d_UE[i].code())
+	if(code==d_UE[i]->code())
 	{
 		delete d_UE[i];
+		d_UE[i] = d_UE.back();
+	 	d_UE.pop_back();
 		return true;
 	}
 	else
@@ -95,8 +97,8 @@ void UE::affiche(std::ostream &ost) const
 	if(nombreECUE()>0) //si UE composé de au moins un ECUE
 	{
 		ost<<std::setw(4)<<code()<<std::setw(4)<<coefficient()<<std::setw(4)<<ECTS()<<std::setw(4)<<"UE "<<intitule()<<std::endl;
-		for(int i=0; i<nbECUE(); i++)
-		d_UE[i].affiche(ost);
+		for(int i=0; i<nombreECUE(); i++)
+		d_UE[i]->affiche(ost);
 	}
 	else //si UE seule
 	{

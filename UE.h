@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Cours.h"
+#include "ECUE.h"
 
 class UE : public Cours
 {
@@ -15,16 +16,18 @@ class UE : public Cours
 		int totalHeuresTD() const;
 		int totalHeuresTP() const;
 		
-		void ajouterECUE(const ECUE* &ecue);
+		void ajouterECUE(ECUE* ecue);
 		void modifierECTS(int ECTS);
-		bool supprimerECUE();
+		bool supprimerECUE(const std::string &code);
 			
-		virtual int totalNombreHeures() const override;
+		int totalNombreHeures() const;
 		virtual void affiche(std::ostream &ost) const override;
 		
 	private:
 		int d_ECTS;
 		std::vector <ECUE*> d_UE; //La premiere case du vecteur est toujours l'UE principale, tout ce qui suit est les ECUE de cet UE.
 };
+
+
 
 #endif

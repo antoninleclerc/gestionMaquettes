@@ -1,7 +1,7 @@
 #ifndef COURS_H
 #define COURS_H
 #include <string>
-
+#include <iostream>
 class Cours
 {
     public:
