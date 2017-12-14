@@ -8,7 +8,7 @@ class Interface{
 		void menuFormation();
 		void menuMaquette();
 		void menuUE();
-    void menuUEchoix();
+    		void menuUEchoix();
 	
 };
 
