@@ -58,12 +58,7 @@ int UE::totalHeuresTP() const
 
 int UE::totalNombreHeures() const
 {
-	int HeuresTotal=0;
-	for(int i=0; i<nbECUE(); i++)
-	{
-		HeuresTotal+=totalHeuresCM()+totalHeuresTD()+totalHeuresTP();
-	}
-	return HeuresTotal;
+	return totalHeuresCM()+totalHeuresTD()+totalHeuresTP();
 }
 
 void UE::ajouterECUE(const ECUE* &ecue)
