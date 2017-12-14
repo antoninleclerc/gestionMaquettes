@@ -1,28 +1,34 @@
-#include "cours.h"
+#include "Cours.h"
 
-cours::cours() : d_code{}, d_intitule{}, d_coefficient{}
+Cours::Cours() : d_code{}, d_intitule{}, d_coefficient{}
 {}
 
-cours :: cours(const std::string& code, const std::string& intitule, int coefficient):
+Cours :: Cours(const std::string& code, const std::string& intitule, int coefficient):
     d_code{code},
     d_intitule{intitule},
-    d_coeff{coefficient}
+    d_coefficient{coefficient}
 {}
 
-cours::~cours()
+Cours::~Cours()
 {}
 
-std::string cours ::code()const
+std::string Cours ::code()const
 {
     return d_code;
 }
 
-std::string cours ::intitule()const
+std::string Cours ::intitule()const
 {
     return d_intitule;
 }
 
-int cours ::coefficient()const
+int Cours ::coefficient()const
 {
     return d_coefficient;
+}
+
+std::ostream& operator<<(std::ostream& ost, const Cours& c)
+{
+	s.print(ost);
+	return ost;
 }

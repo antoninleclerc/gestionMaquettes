@@ -8,15 +8,15 @@ class Cours
         /*
         Constructeur par défaut
         **/
-        cours();
+        Cours();
         /*
         Constructeur à partir d'un code, un intitulé et un coefficient
         **/
-        cours(const std::string& code, const std::string& intitule, int coefficient);
+        Cours(const std::string& code, const std::string& intitule, int coefficient);
         /*
         destructeur de cours
         **/
-        virtual ~cours();
+        virtual ~Cours();
         /*
         @retourne le code d'un cours
         **/
@@ -39,5 +39,7 @@ class Cours
         std::string d_intitule;
         int d_coefficient;
 };
+
+std::ostream& operator<<(std::ostream& ost, const shape& s);
 
 #endif // COURS_H
