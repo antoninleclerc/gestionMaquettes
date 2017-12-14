@@ -29,6 +29,6 @@ int Cours ::coefficient()const
 
 std::ostream& operator<<(std::ostream& ost, const Cours& c)
 {
-	s.print(ost);
+	c.affiche(ost);
 	return ost;
 }

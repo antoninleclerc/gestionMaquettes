@@ -40,6 +40,6 @@ class Cours
         int d_coefficient;
 };
 
-std::ostream& operator<<(std::ostream& ost, const shape& s);
+std::ostream& operator<<(std::ostream& ost, const Cours& s);
 
 #endif // COURS_H
