@@ -3,7 +3,7 @@
 
 #include "Cours.h"
 
-class ECUE : public cours {
+class ECUE : public Cours {
 	public:
 		ECUE(const std::string &code, const std::string &intitule, int coefficient, int heuresCM, int heuresTD, int heuresTP);
 		
