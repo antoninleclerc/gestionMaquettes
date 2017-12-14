@@ -1,7 +1,7 @@
 #ifndef ECUE_H
 #define ECUE_H
 
-#include "cours.h"
+#include "Cours.h"
 
 class ECUE : public cours {
 	public:
