@@ -30,10 +30,10 @@ void ECUE::modifierHeuresTP(int heuresTP) {
 }
 
 void ECUE::affiche(std::ostream& ost) const {
-	ost << "Code ECUE : " << d_code << std::endl;
-	ost << "Intitule ECUE : " << d_intitule << std::endl;
-	ost << "Coefficient ECUE : " << d_coeff << std::endl;
-	ost << "Nombre heures CM : " << d_heuresCM << std::endl;
-	ost << "Nombre heures TD : " << d_heuresTD << std::endl;
-	ost << "Nombre heures TP : " << d_heuresTP << std::endl;
+	ost << "Code ECUE : " << code() << std::endl;
+	ost << "Intitule ECUE : " << intitule() << std::endl;
+	ost << "Coefficient ECUE : " << coefficient() << std::endl;
+	ost << "Nombre heures CM : " << heuresCM() << std::endl;
+	ost << "Nombre heures TD : " << heuresTD() << std::endl;
+	ost << "Nombre heures TP : " << heuresTP() << std::endl;
 }
