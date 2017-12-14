@@ -1,12 +1,12 @@
 #include "cours.h"
 
-cours::cours() : d_code{}, d_intitule{}, d_coeff{}
+cours::cours() : d_code{}, d_intitule{}, d_coefficient{}
 {}
 
-cours :: cours(const std::string& code, const std::string& intitule, int coeff):
+cours :: cours(const std::string& code, const std::string& intitule, int coefficient):
     d_code{code},
     d_intitule{intitule},
-    d_coeff{coeff}
+    d_coeff{coefficient}
 {}
 
 cours::~cours()
@@ -24,5 +24,5 @@ std::string cours ::intitule()const
 
 int cours ::coefficient()const
 {
-    return d_coeff;
+    return d_coefficient;
 }

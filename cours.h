@@ -12,7 +12,7 @@ class cours
         /*
         Constructeur à partir d'un code, un intitulé et un coefficient
         **/
-        cours(const std::string& code, const std::string& intitule, int coeff);
+        cours(const std::string& code, const std::string& intitule, int coefficient);
         /*
         destructeur de cours
         **/
@@ -37,7 +37,7 @@ class cours
     private:
         std::string d_code;
         std::string d_intitule;
-        int d_coeff;
+        int d_coefficient;
 };
 
 #endif // COURS_H
