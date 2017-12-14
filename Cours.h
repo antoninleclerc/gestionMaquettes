@@ -2,7 +2,7 @@
 #define COURS_H
 #include <string>
 
-class cours
+class Cours
 {
     public:
         /*
