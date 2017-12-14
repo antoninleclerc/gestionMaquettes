@@ -1,14 +1,22 @@
 #include <iomanip>
 #include "UE.h"
 
-UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS)
+
+UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS): d_ECTS{ECTS}
 {
 	ECUE* ecue= new ECUE{code,intitule,coefficient,CM,TD,TP};
-	d_UE.push_back(ecue):
-	d_ECTS=ECTS;
+	d_UE.push_back(ecue);
 }
 
-int UE::nbECUE() const
+UE::~UE()
+{
+	for(auto i: d_UE)
+	{
+		delete i;
+	}
+}
+
+int UE::nombreECUE() const
 {
 	return d_UE.size()-1;
 }
@@ -18,58 +26,86 @@ int UE::ECTS() const
 	return d_ECTS;
 }
 
-int UE::nbCMTotal() const
+int UE::totalHeuresCM() const
 {
-	int CMtotal=0;
-	for(int i=0; i<nbECUE(); i++)
+	int HeuresCM=0;
+	for(int i=0; i<nombreECUE(); i++)
 	{
-		CMtotal+=d_UE[i]->nbCM();
+		HeuresCM+=d_UE[i]->heuresCM();
 	}
-	return CMtotal;
+	return HeuresCM;
 }
 
-int UE::nbTDTotal() const
+int UE::totalHeuresTD() const
 {
-	int TDtotal=0;
-	for(int i=0; i<nbECUE(); i++)
+	int HeuresTD=0;
+	for(int i=0; i<nombreECUE(); i++)
 	{
-		TDtotal+=d_UE[i]->nbTD();
+		HeuresTD+=d_UE[i]->heuresTD();
 	}
-	return TDtotal;
+	return HeuresTD;
 }
 
-int UE::nbTPTotal() const
+int UE::totalHeuresTP() const
 {
-	int TPtotal=0;
-	for(int i=0; i<nbECUE(); i++)
+	int HeuresTP=0;
+	for(int i=0; i<nombreECUE(); i++)
 	{
-		TPtotal+=d_UE[i]->nbTP();
+		HeuresTP+=d_UE[i]->heuresTP();
 	}
-	return TPtotal;
+	return HeuresTP;
 }
 
-int UE::nbHeuresTotal() const
+int UE::totalNombreHeures() const
 {
-	int heuresTotal=0;
+	int HeuresTotal=0;
 	for(int i=0; i<nbECUE(); i++)
 	{
-		heuresTotal+=nbCMTotal()+nbTDTotal()+nbTPTotal();
+		HeuresTotal+=totalHeuresCM()+totalHeuresTD()+totalHeuresTP();
 	}
-	return heuresTotal;
+	return HeuresTotal;
 }
 
-void UE::afficher(std::ostream &ost) const
+void UE::ajouterECUE(const ECUE* &ecue)
+{
+	d_UE.push_back(ecue);
+}
+
+void UE::modifierECTS(int ECTS)
+{
+	d_ECTS=ECTS;
+}
+
+/*
+	Supprime l'ECUE à partir d'un code et renvoie vrai si suppression réussie (sinon false)
+*/
+bool UE::supprimerECUE(const std::string &code)
+{
+	int i=0;
+	while(i<d_UE.size() || code!=d_UE[i].code())
+	{
+		i++;
+	}
+	if(code==d_UE[i].code())
+	{
+		delete d_UE[i];
+		return true;
+	}
+	else
+		return false;
+}
+
+void UE::affiche(std::ostream &ost) const
 {	
-	if(nbECUE>0) //si UE composé de au moins un ECUE
+	if(nombreECUE()>0) //si UE composé de au moins un ECUE
 	{
-		ost<<setw(4)<<code()<<setw(4)<<coefficient()<<setw(4)<<ECTS()<<setw(4)<<"UE "<<intitule();
+		ost<<std::setw(4)<<code()<<std::setw(4)<<coefficient()<<std::setw(4)<<ECTS()<<std::setw(4)<<"UE "<<intitule()<<std::endl;
 		for(int i=0; i<nbECUE(); i++)
-		d_UE[i].afficher();
+		d_UE[i].affiche(ost);
 	}
 	else //si UE seule
 	{
-		ost<<setw(4)<<code()<<setw(4)<<coefficient()<<setw(4)<<ECTS()<<setw(4)<<"UE "<<intitule()<<setw(4)<<nbCMTotal()<<setw(4)<<nbTDTotal()<<setw(4)<<nbTPTotal()<<setw(4)<<nbHeuresTotal();
-	}
-		
+		ost<<std::setw(4)<<code()<<std::setw(4)<<coefficient()<<std::setw(4)<<ECTS()<<std::setw(4)<<"UE "<<intitule()<<std::setw(4)<<totalHeuresCM()<<std::setw(4)<<totalHeuresTD()<<std::setw(4)<<totalHeuresTP()<<std::setw(4)<<totalNombreHeures()<<std::endl;
+	}		
 }
 

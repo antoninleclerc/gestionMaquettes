@@ -7,21 +7,24 @@
 class UE : public Cours
 {
 	public:
-		UE();
 		UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS);
-		
+		~UE();
 		int ECTS() const;
-		int nbECUE() const;
-		int nbCMTotal() const;
-		int nbTDTotal() const;
-		int nbTPTotal() const;
+		int nombreECUE() const;
+		int totalHeuresCM() const;
+		int totalHeuresTD() const;
+		int totalHeuresTP() const;
+		
+		void ajouterECUE(const ECUE* &ecue);
+		void modifierECTS(int ECTS);
+		bool supprimerECUE();
 			
-		virtual int nbHeuresTotal() const override;
-		virtual void afficher(std::ostream &ost) const override;
+		virtual int totalNombreHeures() const override;
+		virtual void affiche(std::ostream &ost) const override;
 		
 	private:
 		int d_ECTS;
-		vector <ECUE*> d_UE; //La première case du vecteur est toujours l'UE principale, tout ce qui suit est les ECUE de cet UE.
+		std::vector <ECUE*> d_UE; //La premiere case du vecteur est toujours l'UE principale, tout ce qui suit est les ECUE de cet UE.
 };
 
 #endif
