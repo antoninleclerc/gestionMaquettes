@@ -1,59 +1,54 @@
 #include "formation.h"
 
-formation :: formation (int nombreAnnee, const std:: string intitule ) : d_nombreAnnee{nombreAnnee}, d_intitule{intitule}, d_maquettes{} 
-{
-}
+formation::formation(int nombreAnnee, const std::string intitule) : d_nombreAnnee{nombreAnnee}, d_intitule{intitule}, d_formations{} 
+{}
 
-formation :: ~formation()
+formation::~formation()
 {
-	for (auto m : d_formations)
+	for(auto m : d_formations)
 	{
-		delete m ;
+		delete m;
 	}
 }
 
-int formation :: nombreAnnee() const
+int formation::nombreAnnee() const
 {
-	return d_nombreAnnee ;
+	return d_nombreAnnee;
 }
 
-std:: string formation:: intitule() const 
+std::string formation::intitule() const 
 {
-	return d_intitule ;
+	return d_intitule;
 }
 
-void formation :: ajouterMaquette (const maquette & m) 
+void formation::ajouterMaquette(maquette * m) 
 {
-	d_formations.push_back(m) ;
+	d_formations.push_back(m);
 }
-void formation :: modifierNombreAnnee (int nombreAnnee) 
+
+void formation::modifierNombreAnnee(int nombreAnnee) 
 {
-	d_nombreAnnee = nombreAnnee ; 
+	d_nombreAnnee = nombreAnnee; 
 }
-void formation :: modifierIntitule (std :: string intitule) 
+
+void formation::modifierIntitule(std::string intitule) 
 {
-	d_intitule = intitule ; 
+	d_intitule = intitule; 
 }
-void formation :: ajouterMaquette (const maquette & m)
-{
-	d_formations.push_back(m) ; 
-}
-bool supprimerMaquette (int numeroSemestre)
+
+bool formation::supprimerMaquette(int numeroSemestre)
 {
 	if (numeroSemestre <= d_formations.size())
 	{
 		delete d_formations[numeroSemestre-1] ; 
-		for (int i= numeroSemestre; i<d_formations.size(); i++) 
+		for (int i = numeroSemestre; i < d_formations.size(); i++) 
 		{
-			d_formations[i-1] = i ;  
+			d_formations[i-1] = i;
 		}
-		return true ;
+		return true;
 	}
 	else 
 	{
-		return false ; 
-	}
-	
+		return false; 
+	}	
 }
-
- 

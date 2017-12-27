@@ -32,7 +32,7 @@ class Cours
         /*
         affiche le contenu d'un cours
         **/
-        virtual void affiche(std::ostream& ost) const=0;
+        virtual void affiche(std::ostream& ost) const = 0;
 
     private:
         std::string d_code;

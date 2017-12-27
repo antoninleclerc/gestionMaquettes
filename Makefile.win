@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o cours.o ECUE.o UE.o
-LINKOBJ  = main.o cours.o ECUE.o UE.o
+OBJ      = cours.o ECUE.o Interface.o main.o UE.o formation.o maquette.o UEchoix.o
+LINKOBJ  = cours.o ECUE.o Interface.o main.o UE.o formation.o maquette.o UEchoix.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -24,14 +24,26 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-main.o: main.cpp
-	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
-
 cours.o: cours.cpp
 	$(CPP) -c cours.cpp -o cours.o $(CXXFLAGS)
 
 ECUE.o: ECUE.cpp
 	$(CPP) -c ECUE.cpp -o ECUE.o $(CXXFLAGS)
 
+Interface.o: Interface.cpp
+	$(CPP) -c Interface.cpp -o Interface.o $(CXXFLAGS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
 UE.o: UE.cpp
 	$(CPP) -c UE.cpp -o UE.o $(CXXFLAGS)
+
+formation.o: formation.cpp
+	$(CPP) -c formation.cpp -o formation.o $(CXXFLAGS)
+
+maquette.o: maquette.cpp
+	$(CPP) -c maquette.cpp -o maquette.o $(CXXFLAGS)
+
+UEchoix.o: UEchoix.cpp
+	$(CPP) -c UEchoix.cpp -o UEchoix.o $(CXXFLAGS)

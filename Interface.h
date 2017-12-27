@@ -4,12 +4,12 @@
 class Interface{
 	public:
 		Interface();
-		void menuPrincipal();
+		void menuPrincipalBoucle();
+		menuPrincipalChoix(int& choix);
 		void menuFormation();
 		void menuMaquette();
 		void menuUE();
-    		void menuUEchoix();
-	
+    	void menuUEchoix();
 };
 
 #endif

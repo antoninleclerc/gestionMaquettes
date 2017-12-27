@@ -13,10 +13,10 @@ class UEchoix: public UE
 
         void ajouterUE(UE *ue);
         bool supprimerUE(const std::string& code);
-        virtual void afficher(std::ostream &ost) const override;
+        virtual void affiche(std::ostream &ost) const override;
 
     private:
-        std::vector<UE* >d_UEchoix;
+        std::vector<UE*>d_UEchoix;
 };
 
 #endif // UECHOIX_H
