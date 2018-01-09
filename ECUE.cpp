@@ -1,9 +1,13 @@
 #include<iostream>
+#include <iomanip>
 #include "ECUE.h"
 
 ECUE::ECUE(const std::string &code, const std::string &intitule, int coefficient, int heuresCM, int heuresTD, int heuresTP) :
 			Cours{code, intitule, coefficient}, d_heuresCM{heuresCM}, d_heuresTD{heuresTD}, d_heuresTP{heuresTP}
 {} 
+
+ECUE::~ECUE()
+{}
 
 int ECUE::heuresCM() const {
 	return d_heuresCM;
@@ -30,10 +34,5 @@ void ECUE::modifierHeuresTP(int heuresTP) {
 }
 
 void ECUE::affiche(std::ostream& ost) const {
-	ost << "Code ECUE : " << code() << std::endl;
-	ost << "Intitule ECUE : " << intitule() << std::endl;
-	ost << "Coefficient ECUE : " << coefficient() << std::endl;
-	ost << "Nombre heures CM : " << heuresCM() << std::endl;
-	ost << "Nombre heures TD : " << heuresTD() << std::endl;
-	ost << "Nombre heures TP : " << heuresTP() << std::endl;
+	ost << std::setw(4) << code() << std::setw(4) << coefficient()  << "     ECUE " << std::setw(30) << intitule() <<  std::setw(4) << heuresCM() << std::setw(4) << heuresTD() << std::setw(4) << heuresTP() << std::endl;
 }

@@ -11,12 +11,14 @@ class maquette
 		maquette();
 		~maquette();
 		void ajouterUE(UE * ue); 
-		void afficherMaquette(std::ostream & ost) const; 
+		void afficheMaquette(std::ostream & ost) const; 
 		bool supprimerUE(std::string & code);
 		int nombreUEDansMaquette() const; 
 			
 	private :
 		std::vector<UE*> d_maquettes; 
 };
+
+std::ostream& operator<<(std::ostream& ost, const maquette& m);
 
 #endif 

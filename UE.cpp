@@ -2,8 +2,9 @@
 #include "UE.h"
 
 
-UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS): d_ECTS{ECTS}
+UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS)
 {
+	d_ECTS=ECTS;
 	ECUE* ecue= new ECUE{code,intitule,coefficient,CM,TD,TP};
 	d_UE.push_back(ecue);
 }
@@ -96,13 +97,13 @@ void UE::affiche(std::ostream &ost) const
 {	
 	if(nombreECUE()>0) //si UE composé de au moins un ECUE
 	{
-		ost<<std::setw(4)<<code()<<std::setw(4)<<coefficient()<<std::setw(4)<<ECTS()<<std::setw(4)<<"UE "<<intitule()<<std::endl;
-		for(int i=0; i<nombreECUE(); i++)
+		ost<<std::setw(4)<<d_UE[0]->code()<<std::setw(4)<<d_UE[0]->coefficient()<<std::setw(4)<<ECTS()<<std::setw(20)<<" UE "<<d_UE[0]->intitule()<<std::endl;
+		for(int i=1; i<=nombreECUE(); i++)
 		d_UE[i]->affiche(ost);
 	}
 	else //si UE seule
 	{
-		ost<<std::setw(4)<<code()<<std::setw(4)<<coefficient()<<std::setw(4)<<ECTS()<<std::setw(4)<<"UE "<<intitule()<<std::setw(4)<<totalHeuresCM()<<std::setw(4)<<totalHeuresTD()<<std::setw(4)<<totalHeuresTP()<<std::setw(4)<<totalNombreHeures()<<std::endl;
+		ost<<std::setw(4)<<d_UE[0]->code()<<std::setw(4)<<d_UE[0]->coefficient()<<std::setw(4)<<ECTS()<<std::setw(20)<<"UE "<<d_UE[0]->intitule()<<std::setw(4)<<totalHeuresCM()<<std::setw(4)<<totalHeuresTD()<<std::setw(4)<<totalHeuresTP()<<std::setw(4)<<totalNombreHeures()<<std::endl;
 	}		
 }
 

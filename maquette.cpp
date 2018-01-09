@@ -16,7 +16,7 @@ void maquette::ajouterUE(UE * ue)
 	d_maquettes.push_back(ue); 
 }
 
-void maquette::afficherMaquette(std::ostream & ost) const
+void maquette::afficheMaquette(std::ostream & ost) const
 {
 	for (int i = 0; i < d_maquettes.size(); i++) 
 	{
@@ -47,4 +47,10 @@ bool maquette::supprimerUE(std::string & code)
 int maquette::nombreUEDansMaquette() const
 {
 	return d_maquettes.size(); 
+}
+
+std::ostream& operator<<(std::ostream& ost, const maquette& m)
+{
+	m.afficheMaquette(ost);
+	return ost;
 }

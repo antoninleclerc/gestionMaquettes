@@ -6,6 +6,7 @@
 class ECUE : public Cours {
 	public:
 		ECUE(const std::string &code, const std::string &intitule, int coefficient, int heuresCM, int heuresTD, int heuresTP);
+		~ECUE();
 		
 		int heuresCM() const;
 		int heuresTD() const;
