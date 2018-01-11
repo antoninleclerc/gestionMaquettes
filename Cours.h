@@ -6,10 +6,6 @@ class Cours
 {
     public:
         /*
-        Constructeur par défaut
-        **/
-        Cours();
-        /*
         Constructeur à partir d'un code, un intitulé et un coefficient
         **/
         Cours(const std::string& code, const std::string& intitule, int coefficient);

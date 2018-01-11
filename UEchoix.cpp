@@ -1,7 +1,7 @@
 #include "UEchoix.h"
 
 
-UEchoix::UEchoix(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS)
+UEchoix::UEchoix(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS):UE{code, intitule, coefficient, CM, TD, TP, ECTS}
 {
     UE* ueChoix = new UE{code, intitule, coefficient, CM, TD, TP, ECTS};
     d_UEchoix.push_back(ueChoix);

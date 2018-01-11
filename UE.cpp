@@ -2,12 +2,12 @@
 #include "UE.h"
 
 
-UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS)
+UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS): Cours{code, intitule, coefficient}, d_ECTS{ECTS}
 {
-	d_ECTS=ECTS;
 	ECUE* ecue= new ECUE{code,intitule,coefficient,CM,TD,TP};
 	d_UE.push_back(ecue);
 }
+
 
 UE::~UE()
 {

@@ -1,15 +1,20 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-class Interface{
+#include <string>
+
+class Interface
+{
 	public:
 		Interface();
-		void menuPrincipalBoucle();
-		menuPrincipalChoix(int& choix);
-		void menuFormation();
-		void menuMaquette();
+		void menuPrincipalChoix(int& choix);
+		void menuFormation(int& choix);
+		void ajouterFormation(int& choix);
+		void menuMaquette(int& choix);
 		void menuUE();
     	void menuUEchoix();
+    	
+    	void affichageCentreConsole(const std::string &chaine) const;
 };
 
 #endif
