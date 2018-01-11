@@ -1,11 +1,11 @@
 #include "formation.h"
 
-formation::formation(int nombreAnnee, const std::string intitule) : d_nombreAnnee{nombreAnnee}, d_intitule{intitule}, d_formations{} 
+formation::formation(int nombreAnnee, const std::string intitule) : d_nombreAnnee{nombreAnnee}, d_intitule{intitule}, d_maquettes{} 
 {}
 
 formation::~formation()
 {
-	for(auto m : d_formations)
+	for(auto m : d_maquettes)
 	{
 		delete m;
 	}
@@ -23,7 +23,7 @@ std::string formation::intitule() const
 
 void formation::ajouterMaquette(maquette * m) 
 {
-	d_formations.push_back(m);
+	d_maquettes.push_back(m);
 }
 
 void formation::modifierNombreAnnee(int nombreAnnee) 
@@ -43,7 +43,7 @@ bool formation::supprimerMaquette(int numeroSemestre)
 		delete d_formations[numeroSemestre-1] ; 
 		for (int i = numeroSemestre; i < d_formations.size(); i++) 
 		{
-			d_formations[i-1] = i;
+			d_maquettes[i-1] = i;
 		}
 		return true;
 	}
