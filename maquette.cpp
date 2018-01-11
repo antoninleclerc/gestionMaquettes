@@ -1,11 +1,11 @@
 #include "maquette.h" 
 
-maquette::maquette() : d_maquettes{} 
+maquette::maquette() : d_UE{} 
 {}
 
 maquette::~maquette() 
 {
-	for(auto ue : d_maquettes) 
+	for(auto ue : d_UE) 
 	{
 		delete ue;
 	}
@@ -13,29 +13,29 @@ maquette::~maquette()
 
 void maquette::ajouterUE(UE * ue) 
 {
-	d_maquettes.push_back(ue); 
+	d_UE.push_back(ue); 
 }
 
 void maquette::afficheMaquette(std::ostream & ost) const
 {
-	for (int i = 0; i < d_maquettes.size(); i++) 
+	for (int i = 0; i < d_UE.size(); i++) 
 	{
-		d_maquettes[i]->affiche(ost) ; 
+		d_UE[i]->affiche(ost) ; 
 	}
 }
 
 bool maquette::supprimerUE(std::string & code)
 {
 	int i=0 ;
-	while (i < d_maquettes.size() && d_maquettes[i]->code() != code) 
+	while (i < d_UE.size() && d_UE[i]->code() != code) 
 	{
 		i++ ;
 	}
-	if (code == d_maquettes[i]->code ())
+	if (code == d_UE[i]->code ())
 	{
-		delete d_maquettes[i];
-		d_maquettes[i] = d_maquettes.back();
-		d_maquettes.pop_back();
+		delete d_UE[i];
+		d_UE[i] = d_UE.back();
+		d_UE.pop_back();
 		return true;
 	}
 	else 
@@ -46,7 +46,7 @@ bool maquette::supprimerUE(std::string & code)
 
 int maquette::nombreUEDansMaquette() const
 {
-	return d_maquettes.size(); 
+	return d_UE.size(); 
 }
 
 std::ostream& operator<<(std::ostream& ost, const maquette& m)
