@@ -15,7 +15,7 @@ class formation
 		void modifierIntitule(std::string intitule);
 		void ajouterMaquette(maquette * m); 
 		bool supprimerMaquette (int numeroSemestre);	
-	
+		void afficherFormation(std :: ostream & ost) const; 
 	private :
 		int d_nombreAnnee; 
 		std::string d_intitule; 
