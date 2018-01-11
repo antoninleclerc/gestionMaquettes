@@ -19,7 +19,7 @@ class formation
 	private :
 		int d_nombreAnnee; 
 		std::string d_intitule; 
-		std::vector<maquette*> d_formations;	
+		std::vector<maquette*> d_maquettes ;	
 };
 
 
