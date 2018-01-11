@@ -43,7 +43,7 @@ bool formation::supprimerMaquette(int numeroSemestre)
 		delete d_formations[numeroSemestre-1] ; 
 		for (int i = numeroSemestre; i < d_formations.size(); i++) 
 		{
-			d_maquettes[i-1] = i;
+			d_maquettes[i-1] = d_maquettes[i];
 		}
 		return true;
 	}
