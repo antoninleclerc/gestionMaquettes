@@ -16,7 +16,7 @@ class maquette
 		int nombreUEDansMaquette() const; 
 			
 	private :
-		std::vector<UE*> d_maquettes; 
+		std::vector<UE*> d_UE; 
 };
 
 std::ostream& operator<<(std::ostream& ost, const maquette& m);
