@@ -20,7 +20,7 @@ void maquette::afficheMaquette(std::ostream & ost) const
 {
 	for (int i = 0; i < d_UE.size(); i++) 
 	{
-		d_UE[i]->affiche(ost) ; 
+		d_UE[i]->affiche(ost) <<std :: endl ; 
 	}
 }
 
