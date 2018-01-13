@@ -21,7 +21,6 @@ class Formation
 		bool supprimerMaquette (int numeroSemestre);
 		void afficheFormation(std :: ostream & ost) const;
 		void sauverDansFichier() const;
-		void ajouterFinFichier(const std::string &chaineAajouter, const std::string &nomFichier) const;
 	
 	private :
 		int d_nombreAnnee; 

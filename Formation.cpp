@@ -92,30 +92,13 @@ void Formation :: afficheFormation(std :: ostream & ost) const
 void Formation :: sauverDansFichier() const
 {
 	std::string chaine=d_mention+" "+d_parcours;
-	ajouterFinFichier(chaine, "Liste formations.txt");
+	System::ajouterFinFichier(chaine, "Liste formations.txt");
 	
 	//Puis ajouter les maquettes en parcourant le tableau des maquettes et en appelant une méthode sauverMaquette (A CREER)	
-}
-
-void Formation :: ajouterFinFichier(const std::string &chaineAajouter, const std::string &nomFichier) const
-{
-	std::ifstream fi;
- 	fi.open (nomFichier.c_str());
- 	std::string ligneTemporaire;
- 	std::string ancienContenu="";
- 	getline( fi, ligneTemporaire);
-	while (ligneTemporaire != "" )
-  	{
-	    ancienContenu=ancienContenu+ligneTemporaire+"\n";
-  		getline( fi, ligneTemporaire);
-  	}
-	fi.close();
 	
-  	std::ofstream fo;
- 	fo.open (nomFichier.c_str());
- 	fo << ancienContenu + chaineAajouter + "\n";
-	fo.close();
-}		
+	std::cout << std::endl << "La formation a ete correcement sauvegardee ! "<<std::endl;
+	system("pause");
+}
 
 std::ostream& operator<<(std::ostream& ost, const Formation& f)
 {

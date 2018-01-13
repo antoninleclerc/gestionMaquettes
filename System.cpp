@@ -37,4 +37,41 @@ namespace System
 			system("clear");
 		#endif
 	}
+	
+	void ajouterFinFichier(const std::string &chaineAajouter, const std::string &nomFichier)
+	{
+		std::ifstream fi;
+	 	fi.open (nomFichier.c_str());
+	 	std::string ligneTemporaire;
+	 	std::string ancienContenu="";
+	 	getline( fi, ligneTemporaire);
+		while (ligneTemporaire != "" )
+	  	{
+		    ancienContenu=ancienContenu+ligneTemporaire+"\n";
+	  		getline( fi, ligneTemporaire);
+	  	}
+		fi.close();
+		
+	  	std::ofstream fo;
+	 	fo.open (nomFichier.c_str());
+	 	fo << ancienContenu + chaineAajouter + "\n";
+		fo.close();
+	}		
+	
+	void afficherListeFormations(const std::string &nomFichier)
+	{
+		std::cout<<"Liste formations"<<std::endl;
+		std::ifstream fi;
+	 	fi.open (nomFichier.c_str());
+	 	std::string formation;
+	 	int numeroFormation=1;
+	 	getline( fi, formation);
+		while (formation != "" )
+	  	{
+		    std::cout<<"("<<numeroFormation<<") "<<formation<<std::endl;
+	  		getline( fi, formation);
+	  		numeroFormation++;
+	  	}
+		fi.close();
+	}
 }
