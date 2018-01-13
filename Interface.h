@@ -11,12 +11,26 @@ class Interface
 	public:
 		Interface();
 		void menuPrincipalChoix(int& choix);
+		
 		void menuFormation(int& choix);
 		void ajouterFormation();
 		void supprimerFormation();
+		
 		void menuMaquette(int& choix);
-		void menuUE();
-    	void menuUEchoix();
+		void ajouterMaquette();
+		
+		void menuUE(int& choix);
+		void ajouterUE();
+		void saisirDonneesDuneUE();
+		void ajouterUEsimple();
+		void ajouterUEcomposee();
+		void saisirDonneesDuneECUE();
+		void ajouterECUE();
+		
+    	void menuUEchoix(int& choix);
+    	void ajouterUEchoix();
+    	void supprimerUEchoix();
+    	void afficherUEchoix();
     private:
     	std::vector<Formation*> d_formations;	
 };

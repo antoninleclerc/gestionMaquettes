@@ -5,34 +5,46 @@
 class Cours
 {
     public:
-        /*
-        Constructeur Ã  partir d'un code, un intitulÃ© et un coefficient
-        **/
+        /** Constructeur d'un cours
+		 *	@brief Constructeur de cours à partir d'un code, d'un intitule et d'un coefficient
+		 *	@param[in] code - chaine de caractère représentant le code
+		 *	@param[in] intitule - chaine de caractère représentant l'intitulé
+		 *	@param[in] coefficient - chaine de caractère représentant le coefficient
+		 */
         Cours(const std::string& code, const std::string& intitule, int coefficient);
-        /*
-        destructeur de cours
-        **/
+        
+        /** destructeur de cours
+        */
         virtual ~Cours();
-        /*
-        @retourne le code d'un cours
-        **/
+        
+        /** Fonction code
+         *	@retourne le code d'un cours
+         */
         std::string code()const;
-        /*
-        @retourne l'intitulÃ© d'un cours
-        **/
+        
+        /**	Fonction intitule
+       	 *	@Retourne l'intitule d'un cours
+         */
         std::string intitule()const;
-        /*
-        @retourne le coefficient d'un cours
-        **/
+        
+        /** Fonction coefficient
+         *	@Retourne le coefficient d'un cours
+         */
         int coefficient()const;
-        /*
-        affiche le contenu d'un cours
-        **/
+        
+        /** Fonction affiche
+       	 *	@Permet d'afficher le contenu d'un cours
+         */
         virtual void affiche(std::ostream& ost) const = 0;
 
     private:
+    	/**
+		 *Code d'un cours
+		 */
         std::string d_code;
+        //Intitule d'un cours
         std::string d_intitule;
+        //Coefficient d'un cours
         int d_coefficient;
 };
 
