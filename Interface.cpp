@@ -1,9 +1,9 @@
-#include<iostream>
+#include <iostream>
+
 #include "Interface.h"
 #include "Formation.h"
 #include "System.h"
 
-#define LARGEUR_CONSOLE 160
 
 Interface::Interface()
 {
@@ -15,20 +15,20 @@ void Interface::menuPrincipalChoix(int& choix)
 {
 	do
   	{
-  		System::centrerTexte("-------------------------------------------------------------",LARGEUR_CONSOLE);
-  		System::centrerTexte("|           Maquettes des formations universitaires           |",LARGEUR_CONSOLE);
-  		System::centrerTexte("-------------------------------------------------------------",LARGEUR_CONSOLE);
-		System::centrerTexte("---------------------- Le menu principal --------------------",LARGEUR_CONSOLE);
-    	System::centrerTexte("(1) Menu formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t Ajouter une formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t Modifier une formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t Supprimer une formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("(2) Menu maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte(" Ajouter une maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t Modifier une maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t Supprimer une maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("(3) Quitter",LARGEUR_CONSOLE-49);
-  		System::centrerTexte("Votre choix : ",LARGEUR_CONSOLE-47);
+  		System::centrerTexte("-------------------------------------------------------------",System::LARGEUR_CONSOLE);
+  		System::centrerTexte("|           Maquettes des formations universitaires           |",System::LARGEUR_CONSOLE);
+  		System::centrerTexte("-------------------------------------------------------------",System::LARGEUR_CONSOLE);
+		System::centrerTexte("---------------------- Le menu principal --------------------",System::LARGEUR_CONSOLE);
+    	System::centrerTexte("(1) Menu formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t Ajouter une formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t Modifier une formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t Supprimer une formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("(2) Menu maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte(" Ajouter une maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t Modifier une maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t Supprimer une maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("(3) Quitter",System::LARGEUR_CONSOLE-49);
+  		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);
     	std::cin >> choix;
   	}
   	while (choix < 1 || choix > 3);
@@ -48,13 +48,13 @@ void Interface::menuFormation(int& choix)
   	{
   		System::effacerEcran();
   		std::cout<<std::endl;
-		System::centrerTexte("------------------------- Menu formation -----------------------",LARGEUR_CONSOLE);
-  		System::centrerTexte("\t (1) Ajouter une formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t (2) Modifier une formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t (3) Supprimer une formation",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("(4) Quitter",LARGEUR_CONSOLE-51);
-  		System::centrerTexte("(5) Retour",LARGEUR_CONSOLE-51);
-  		System::centrerTexte("Votre choix : ",LARGEUR_CONSOLE-47);
+		System::centrerTexte("------------------------- Menu formation -----------------------",System::LARGEUR_CONSOLE);
+  		System::centrerTexte("\t (1) Ajouter une formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t (2) Modifier une formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t (3) Supprimer une formation",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("(4) Quitter",System::LARGEUR_CONSOLE-51);
+  		System::centrerTexte("(5) Retour",System::LARGEUR_CONSOLE-51);
+  		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);
     	std::cin >> choix;
   	}
   	while (choix < 1 || choix > 5);
@@ -75,15 +75,39 @@ void Interface::menuFormation(int& choix)
 void Interface::ajouterFormation(int& choix)
 {
 	System::effacerEcran();
-	System::centrerTexte("Ajout formation",LARGEUR_CONSOLE);
-	std::string intituleFormation;
+	System::centrerTexte("Ajout formation",System::LARGEUR_CONSOLE);
+	std::string domaineFormation,mentionFormation,parcoursFormation;
 	int nombreAnnee;
-	std::cout << "Entrez l'intitule de la formation (DUT, Licence, Master ...): ";
-	std::cin >> intituleFormation;
+	std::cout << "Domaine : ";
+	std::cin >> domaineFormation;
+	std::cout << "Mention (Licence, Master, DUT, BTS ...): ";
+	std::cin >> mentionFormation;
+	std::cout << "Parcours (MIAGE, Informatique, Physique, GE2I ...): ";
+	std::cin >> parcoursFormation;
 	std::cout << "Entrez le nombre d'annee de cette formation: ";
 	std::cin >> nombreAnnee;
-	Formation formation{nombreAnnee, intituleFormation};
-	
+	Formation formation{nombreAnnee, domaineFormation, mentionFormation ,parcoursFormation};
+	System::effacerEcran();
+	std::cout << "Formation creee avec succes ! " << std::endl;
+	std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
+	std::cout << "\t (1) Oui" << std::endl;
+	std::cout << "\t (2) Non" << std::endl;
+	std::cout << "Votre choix : " << std::endl;
+	std::cin >> choix;
+	while(choix !=1 && choix !=2)
+	{
+		System::effacerEcran();
+		std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
+		std::cout << "\t (1) Oui" << std::endl;
+		std::cout << "\t (2) Non" << std::endl;
+		std::cout << "Votre choix : " << std::endl;
+		std::cin >> choix;
+	}
+	if(choix == 1)
+	{
+		/*ajouterMaquette(formation)*/
+	}
+  	formation.sauverDansFichier();
 }
 
 void Interface::menuMaquette(int& choix)
@@ -92,13 +116,13 @@ void Interface::menuMaquette(int& choix)
   	{
   		System::effacerEcran();
     	std::cout<<std::endl;
-		System::centrerTexte("------------------------- Menu maquette -----------------------",LARGEUR_CONSOLE);
-  		System::centrerTexte("\t (1) Ajouter une maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t (2) Modifier une maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t (3) Supprimer une maquette",LARGEUR_CONSOLE-42);
-  		System::centrerTexte("(4) Quitter",LARGEUR_CONSOLE-51);
-  		System::centrerTexte("(5) Retour",LARGEUR_CONSOLE-51);
-  		System::centrerTexte("Votre choix : ",LARGEUR_CONSOLE-47);
+		System::centrerTexte("------------------------- Menu maquette -----------------------",System::LARGEUR_CONSOLE);
+  		System::centrerTexte("\t (1) Ajouter une maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t (2) Modifier une maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("\t (3) Supprimer une maquette",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("(4) Quitter",System::LARGEUR_CONSOLE-51);
+  		System::centrerTexte("(5) Retour",System::LARGEUR_CONSOLE-51);
+  		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);
     	std::cin >> choix;
   	}
   	while (choix < 1 || choix > 5);

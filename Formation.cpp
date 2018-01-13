@@ -1,8 +1,10 @@
 #include <iomanip>
+#include <fstream>
 
 #include "Formation.h"
+#include "System.h"
 
-Formation::Formation(int nombreAnnee, const std::string intitule) : d_nombreAnnee{nombreAnnee}, d_intitule{intitule}, d_maquettes{} 
+Formation::Formation(int nombreAnnee, const std::string domaine, const std::string mention, const std::string parcours) : d_nombreAnnee{nombreAnnee}, d_domaine{domaine}, d_mention{mention}, d_parcours{parcours}, d_maquettes{} 
 {}
 
 Formation::~Formation()
@@ -18,9 +20,19 @@ int Formation::nombreAnnee() const
 	return d_nombreAnnee;
 }
 
-std::string Formation::intitule() const 
+std::string Formation::domaine() const 
 {
-	return d_intitule;
+	return d_domaine;
+}
+
+std::string Formation::mention() const 
+{
+	return d_mention;
+}
+
+std::string Formation::parcours() const 
+{
+	return d_parcours;
 }
 
 void Formation::ajouterMaquette(Maquette * m) 
@@ -33,9 +45,19 @@ void Formation::modifierNombreAnnee(int nombreAnnee)
 	d_nombreAnnee = nombreAnnee; 
 }
 
-void Formation::modifierIntitule(std::string intitule) 
+void Formation::modifierDomaine(const std::string & domaine) 
 {
-	d_intitule = intitule; 
+	d_domaine = domaine; 
+}
+
+void Formation::modifierMention(const std::string & mention) 
+{
+	d_mention = mention; 
+}
+
+void Formation::modifierParcours(const std::string & parcours) 
+{
+	d_parcours = parcours; 
 }
 
 bool Formation::supprimerMaquette(int numeroSemestre)
@@ -57,10 +79,46 @@ bool Formation::supprimerMaquette(int numeroSemestre)
 
 void Formation :: afficheFormation(std :: ostream & ost) const
 {
-	ost << std :: setw(4) << d_intitule << std :: endl ;
+	System::centrerTexte(d_domaine,System::LARGEUR_CONSOLE);
+	System::centrerTexte(d_mention,System::LARGEUR_CONSOLE);
+	System::centrerTexte(d_parcours,System::LARGEUR_CONSOLE);
 	for (int i=0 ; i< d_maquettes.size() ; i++ )
 	{
 		ost << std::setw(4)<< " Semestre " << i+1 <<std ::endl ;
 		d_maquettes[i]->afficheMaquette (ost) ; 
 	}	ost<< std :: endl ; 
+}
+
+void Formation :: sauverDansFichier() const
+{
+	std::string chaine=d_mention+" "+d_parcours;
+	ajouterFinFichier(chaine, "Liste formations.txt");
+	
+	//Puis ajouter les maquettes en parcourant le tableau des maquettes et en appelant une méthode sauverMaquette (A CREER)	
+}
+
+void Formation :: ajouterFinFichier(const std::string &chaineAajouter, const std::string &nomFichier) const
+{
+	std::ifstream fi;
+ 	fi.open (nomFichier.c_str());
+ 	std::string ligneTemporaire;
+ 	std::string ancienContenu="";
+ 	getline( fi, ligneTemporaire);
+	while (ligneTemporaire != "" )
+  	{
+	    ancienContenu=ancienContenu+ligneTemporaire+"\n";
+  		getline( fi, ligneTemporaire);
+  	}
+	fi.close();
+	
+  	std::ofstream fo;
+ 	fo.open (nomFichier.c_str());
+ 	fo << ancienContenu + chaineAajouter + "\n";
+	fo.close();
+}		
+
+std::ostream& operator<<(std::ostream& ost, const Formation& f)
+{
+	f.afficheFormation(ost);
+	return ost;
 }
