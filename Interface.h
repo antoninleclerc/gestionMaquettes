@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "Formation.h"
+#include "Maquette.h" 
+
 
 class Interface
 {
@@ -17,7 +19,7 @@ class Interface
 		void supprimerFormation();
 		
 		void menuMaquette(int& choix);
-		void ajouterMaquette();
+		Maquette* MaquetteCree();
 		
 		void menuUE(int& choix);
 		void ajouterUE();

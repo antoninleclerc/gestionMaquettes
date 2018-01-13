@@ -109,7 +109,7 @@ void Interface::ajouterFormation()
 	}
 	if(choix == 1)
 	{
-		ajouterMaquette();
+		formation->ajouterMaquette(MaquetteCree());
 	}
 	d_formations.push_back(formation);
   	formation->sauverDansFichier();
@@ -145,7 +145,7 @@ void Interface::menuMaquette(int& choix)
   	switch (choix)
 	{
   		case 1:
-		  ajouterMaquette();
+		  //ajouterMaquette();
 		  break;
   		case 2: /*modifierMaquette*/; break;
   		case 3: /*supprimerMaquette*/; break;
@@ -157,7 +157,7 @@ void Interface::menuMaquette(int& choix)
 		menuPrincipalChoix(choix);
 }
 
-void Interface :: ajouterMaquette()
+Maquette* Interface :: MaquetteCree()
 {
 	System::effacerEcran();
 	System::centrerTexte("Ajout maquette",System::LARGEUR_CONSOLE);
@@ -177,6 +177,7 @@ void Interface :: ajouterMaquette()
 			menuUEchoix(choix);
 			break;
 	}
+	return maquette;
 }
 
 
