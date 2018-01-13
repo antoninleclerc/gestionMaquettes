@@ -91,6 +91,7 @@ void Interface::ajouterFormation()
 	Formation* formation= new Formation{nombreAnnee, domaineFormation, mentionFormation ,parcoursFormation};
 	System::effacerEcran();
 	std::cout << "Formation creee avec succes ! " << std::endl;
+	std::cout<<std::endl;
 	std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
 	std::cout << "\t (1) Oui" << std::endl;
 	std::cout << "\t (2) Non" << std::endl;
@@ -186,39 +187,40 @@ void Interface::menuUE(int& choix)
   		System::effacerEcran();
     	std::cout<<std::endl;
 		System::centrerTexte("------------------------- Menu UE -----------------------",System::LARGEUR_CONSOLE);
-  		System::centrerTexte("\t (1) Ajouter une UE",System::LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t (2) Modifier une UE",System::LARGEUR_CONSOLE-42);
-  		System::centrerTexte("\t (3) Supprimer une UE",System::LARGEUR_CONSOLE-42);
-  		System::centrerTexte("(4) Quitter",System::LARGEUR_CONSOLE-51);
-  		System::centrerTexte("(5) Retour",System::LARGEUR_CONSOLE-51);
+  		System::centrerTexte("\t (1) Traitement d'une UE",System::LARGEUR_CONSOLE-42);
+  		System::centrerTexte("(2) Retour",System::LARGEUR_CONSOLE-51);
+  		System::centrerTexte("(3) Quitter",System::LARGEUR_CONSOLE-51);
   		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);
     	std::cin >> choix;
   	}
-  	while (choix < 1 || choix > 5);
+  	while (choix < 1 || choix > 3);
   	switch (choix)
 	{
   		case 1: 
-		  ajouterUE();
-		  break;
-  		case 2: /*modifierMaquette*/; break;
-  		case 3: /*supprimerMaquette*/; break;
+			ajouterUE();
+			break;
+  		case 2: 
+			menuPrincipalChoix(choix);	
+	   		break;
+  		case 3:
+			return;
+			break;
 	}
 	System::effacerEcran();
-  	if(choix==4)
-		return;
-	else if(choix=5)
-		menuPrincipalChoix(choix);	
 }	
 		
 void Interface :: ajouterUE()
 {
-
+	System::effacerEcran();
 	System::centrerTexte("Ajout UE",System::LARGEUR_CONSOLE);
 	std::cout << "Voulez-vous :" << std::endl;
 	std::cout << "\t (1) Ajouter une UE simple" << std::endl;
 	std::cout << "\t (2) Ajouter une UE composée " << std::endl;
+	std::cout << "\t (3) Modifier une UE" << std::endl;
+	std::cout << "\t (4) Supprimer une UE" << std::endl;
 	std::cout << "Votre choix : " << std::endl;
 	int choix;
+	std::cin>>choix;
 	switch(choix)
 	{
 		case 1:
@@ -228,6 +230,7 @@ void Interface :: ajouterUE()
 			ajouterUEcomposee();
 			break;
 	}
+	System::effacerEcran();
 }
 
 void Interface :: saisirDonneesDuneUE()
