@@ -5,7 +5,7 @@
 #include "System.h"
 
 
-Interface::Interface()
+Interface::Interface(): d_formations()
 {
 	int choix;
   	menuPrincipalChoix(choix);
@@ -15,6 +15,7 @@ void Interface::menuPrincipalChoix(int& choix)
 {
 	do
   	{
+  		std::cout<<std::endl;
   		System::centrerTexte("-------------------------------------------------------------",System::LARGEUR_CONSOLE);
   		System::centrerTexte("|           Maquettes des formations universitaires           |",System::LARGEUR_CONSOLE);
   		System::centrerTexte("-------------------------------------------------------------",System::LARGEUR_CONSOLE);
@@ -60,9 +61,9 @@ void Interface::menuFormation(int& choix)
   	while (choix < 1 || choix > 5);
   	switch (choix)
 	{
-  		case 1: ajouterFormation(choix); break;
+  		case 1: ajouterFormation(); break;
   		case 2: /*modifierFormation*/; break;
-  		case 3: /*supprimerFormation*/; break;
+  		case 3: supprimerFormation(); break;
 	}
   	System::effacerEcran();
 	if(choix==4)
@@ -72,7 +73,7 @@ void Interface::menuFormation(int& choix)
 		
 }
 
-void Interface::ajouterFormation(int& choix)
+void Interface::ajouterFormation()
 {
 	System::effacerEcran();
 	System::centrerTexte("Ajout formation",System::LARGEUR_CONSOLE);
@@ -80,19 +81,20 @@ void Interface::ajouterFormation(int& choix)
 	int nombreAnnee;
 	std::cout << "Domaine : ";
 	std::cin >> domaineFormation;
-	std::cout << "Mention (Licence, Master, DUT, BTS ...): ";
+	std::cout << "Mention (Licence, Master, ...): ";
 	std::cin >> mentionFormation;
-	std::cout << "Parcours (MIAGE, Informatique, Physique, GE2I ...): ";
+	std::cout << "Parcours (MIAGE, Informatique, Physique, ...): ";
 	std::cin >> parcoursFormation;
 	std::cout << "Entrez le nombre d'annee de cette formation: ";
 	std::cin >> nombreAnnee;
-	Formation formation{nombreAnnee, domaineFormation, mentionFormation ,parcoursFormation};
+	Formation* formation= new Formation{nombreAnnee, domaineFormation, mentionFormation ,parcoursFormation};
 	System::effacerEcran();
 	std::cout << "Formation creee avec succes ! " << std::endl;
 	std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
 	std::cout << "\t (1) Oui" << std::endl;
 	std::cout << "\t (2) Non" << std::endl;
 	std::cout << "Votre choix : " << std::endl;
+	int choix;
 	std::cin >> choix;
 	while(choix !=1 && choix !=2)
 	{
@@ -107,7 +109,19 @@ void Interface::ajouterFormation(int& choix)
 	{
 		/*ajouterMaquette(formation)*/
 	}
-  	formation.sauverDansFichier();
+	d_formations.push_back(formation);
+  	formation->sauverDansFichier();
+}
+
+void Interface::supprimerFormation()
+{
+	System::afficherListeFormations("Liste formations.txt");
+	std::cout << "Tapez le numero de la formation que vous voulez supprimer :" << std::endl;
+	std::cout << "Votre choix : " << std::endl;
+	int choix;
+	std::cin >> choix;
+	//supprimerFormationNumero(choix);
+	system("pause");
 }
 
 void Interface::menuMaquette(int& choix)
@@ -128,7 +142,7 @@ void Interface::menuMaquette(int& choix)
   	while (choix < 1 || choix > 5);
   	switch (choix)
 	{
-  		case 1: /*ajouterMaquette(choix)*/; break;
+  		case 1: /*ajouterMaquette*/; break;
   		case 2: /*modifierMaquette*/; break;
   		case 3: /*supprimerMaquette*/; break;
 	}
