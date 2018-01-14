@@ -24,6 +24,12 @@ class UE : public Cours
 			
 		virtual void affiche(std::ostream &ost) const override;
 		
+		/**	Fonction enregistrerUE
+		 *	Permet d'enregistrer une UE dans le fichier txt portant le nom de la mention de la formation à laquelle appartient l'UE
+		 *	@param[in] mention : le nom du fichier txt
+		 */
+		void enregistrerUE(const std::string &mention) const;
+		
 	private:
 		int d_ECTS;
 		std::vector <ECUE*> d_UE; //La premiere case du vecteur est toujours l'UE principale, tout ce qui suit est les ECUE de cet UE.
