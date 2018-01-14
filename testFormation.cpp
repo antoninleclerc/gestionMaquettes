@@ -1,5 +1,6 @@
 #include "doctest.h"
 #include "formation.h" 
+#include "maquette.h"
 
 
 TEST_CASE {"Construction d'une formation "}
@@ -29,22 +30,22 @@ TEST_CASE("Modification d'une formation")
 	std:: string mention= "Licence Informatique" ; 
 	std::string parcours = "Informatique" ;
 	formation f {nbAnnee, domaine, mention, parcours} ; 
-	SUBCASE{"nombre d'année modifié"}
+	SUBCASE{"nombre d'annÃ©e modifiÃ©"}
 	{
 		f.modifierNombreAnnee(2) ; 
 		REQUIRE_EQ(f.nombreAnnee(), 2) ;
 	}
-	SUBCASE{"Domaine modifié"}
+	SUBCASE{"Domaine modifiÃ©"}
 	{
 		f.modifierDomaine ("flsh") ; 
 		REQUIRE_EQ(f.domaine(),"flsh" ) ;
 	}
-	SUBCASE{"Mention modifié"}
+	SUBCASE{"Mention modifiÃ©"}
 	{
 		f.modifierMention("Licence Anglais") ; 
 		REQUIRE_EQ(f.mention(), "Licence Anglais") ;
 	}
-	SUBCASE{"Parcours modifié"}
+	SUBCASE{"Parcours modifiÃ©"}
 	{
 		f.modifierParcours("Anglais") ; 
 		REQUIRE_EQ(f.parcours(),"Anglais" ) ;
