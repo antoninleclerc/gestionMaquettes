@@ -6,19 +6,6 @@
 
 namespace System
 {
-	void charge(const std::string &nomFichier)
-	{
-		/*int nbArrets, nbTramways, posX, posY, duree, vitesse;
-		string nomArret;
-		ifstream f(nomFichier.c_str());
-	
-		// On charge les 3 variables nbTramways, nbArrets et vitesse à partir du fichier
-		f >> nbTramways >> nbArrets >> vitesse;*/
-	}
-	
-	//méthode save à rajouter
-	
-	
 	void centrerTexte(const std::string &chaine, int largeurConsole)
 	{
 	    int n;
@@ -58,20 +45,4 @@ namespace System
 		fo.close();
 	}		
 	
-	void afficherListeFormations(const std::string &nomFichier)
-	{
-		std::cout<<"Liste formations"<<std::endl;
-		std::ifstream fi;
-	 	fi.open (nomFichier.c_str());
-	 	std::string formation;
-	 	int numeroFormation=1;
-	 	getline( fi, formation);
-		while (formation != "" )
-	  	{
-		    std::cout<<"("<<numeroFormation<<") "<<formation<<std::endl;
-	  		getline( fi, formation);
-	  		numeroFormation++;
-	  	}
-		fi.close();
-	}
 }
