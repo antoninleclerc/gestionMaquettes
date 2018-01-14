@@ -6,10 +6,10 @@ class Cours
 {
     public:
         /** Constructeur d'un cours
-		 *	@brief Constructeur de cours à partir d'un code, d'un intitule et d'un coefficient
-		 *	@param[in] code - chaine de caractère représentant le code
-		 *	@param[in] intitule - chaine de caractère représentant l'intitulé
-		 *	@param[in] coefficient - chaine de caractère représentant le coefficient
+		 *	@brief Constructeur de cours Ã  partir d'un code, d'un intitule et d'un coefficient
+		 *	@param[in] code - chaine de caractÃ¨re reprÃ©sentant le code
+		 *	@param[in] intitule - chaine de caractÃ¨re reprÃ©sentant l'intitulÃ©
+		 *	@param[in] coefficient - entier reprÃ©sentant le coefficient
 		 */
         Cours(const std::string& code, const std::string& intitule, int coefficient);
         
