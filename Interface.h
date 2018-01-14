@@ -21,15 +21,15 @@ class Interface
 		void menuMaquette(int& choix);
 		Maquette* MaquetteCree();
 		
-		void menuUE(int& choix);
-		void ajouterUE();
-		void saisirDonneesDuneUE();
-		void ajouterUEsimple();
-		void ajouterUEcomposee();
-		void saisirDonneesDuneECUE();
-		void ajouterECUE();
+		void menuUE(int& choix, Maquette* maquette);
+		void ajouterUE(Maquette* maquette);
+		void saisirDonneesDuneUE(std::string& code, std::string& intitule,int& coefficient,int& heuresCM,int& heuresTD,int& heuresTP,int& ECTS);
+		void ajouterUEsimple(Maquette* maquette);
+		void ajouterUEcomposee(Maquette* maquette);
+		void saisirDonneesDuneECUE(std::string& code, std::string& intitule,int& coefficient,int& heuresCM,int& heuresTD,int& heuresTP);
+		void ajouterECUE(UE* ue);
 		
-    	void menuUEchoix(int& choix);
+    	void menuUEchoix(int& choix,Maquette* maquette);
     	void ajouterUEchoix();
     	void supprimerUEchoix();
     	void afficherUEchoix();

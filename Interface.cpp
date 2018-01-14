@@ -92,25 +92,30 @@ void Interface::ajouterFormation()
 	System::effacerEcran();
 	std::cout << "Formation creee avec succes ! " << std::endl;
 	std::cout<<std::endl;
-	std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
+	/*std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
 	std::cout << "\t (1) Oui" << std::endl;
 	std::cout << "\t (2) Non" << std::endl;
 	std::cout << "Votre choix : " << std::endl;
+	*/
 	int choix;
-	std::cin >> choix;
-	while(choix !=1 && choix !=2)
+	//std::cin >> choix;
+	for(int i=0; i<nombreAnnee*2; i++)
 	{
-		System::effacerEcran();
-		std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
-		std::cout << "\t (1) Oui" << std::endl;
-		std::cout << "\t (2) Non" << std::endl;
-		std::cout << "Votre choix : " << std::endl;
-		std::cin >> choix;
+		do{
+			System::effacerEcran();
+			std::cout << "Souhaitez vous ajouter une maquette? " << std::endl;
+			std::cout << "\t (1) Oui" << std::endl;
+			std::cout << "\t (2) Non" << std::endl;
+			std::cout << "Votre choix : " << std::endl;
+			std::cin >> choix;
+		}while(choix !=1 && choix !=2);
+		if(choix == 1)
+		{
+			formation->ajouterMaquette(MaquetteCree());
+			formation->afficherListeMaquettes();
+		}
 	}
-	if(choix == 1)
-	{
-		formation->ajouterMaquette(MaquetteCree());
-	}
+
 	d_formations.push_back(formation);
   	formation->sauverDansFichier();
 }
@@ -171,17 +176,17 @@ Maquette* Interface :: MaquetteCree()
 	switch(choix)
 	{
 		case 1:
-			menuUE(choix);
+			menuUE(choix, maquette);
 			break;
 		case 2:
-			menuUEchoix(choix);
+			menuUEchoix(choix, maquette);
 			break;
 	}
 	return maquette;
 }
 
 
-void Interface::menuUE(int& choix)
+void Interface::menuUE(int& choix,Maquette* maquette)
 {
 	do
   	{
@@ -198,7 +203,7 @@ void Interface::menuUE(int& choix)
   	switch (choix)
 	{
   		case 1: 
-			ajouterUE();
+			ajouterUE(maquette);
 			break;
   		case 2: 
 			menuPrincipalChoix(choix);	
@@ -210,7 +215,7 @@ void Interface::menuUE(int& choix)
 	System::effacerEcran();
 }	
 		
-void Interface :: ajouterUE()
+void Interface :: ajouterUE(Maquette* maquette)
 {
 	System::effacerEcran();
 	System::centrerTexte("Ajout UE",System::LARGEUR_CONSOLE);
@@ -225,19 +230,17 @@ void Interface :: ajouterUE()
 	switch(choix)
 	{
 		case 1:
-			ajouterUEsimple();
+			ajouterUEsimple(maquette);
 			break;
 		case 2:
-			ajouterUEcomposee();
+			ajouterUEcomposee(maquette);
 			break;
 	}
 	System::effacerEcran();
 }
 
-void Interface :: saisirDonneesDuneUE()
+void Interface :: saisirDonneesDuneUE(std::string& code, std::string& intitule,int& coefficient,int& heuresCM,int& heuresTD,int& heuresTP,int& ECTS )
 {
-	std::string code,intitule;
-	int coefficient,heuresCM,heuresTD,heuresTP,ECTS;
 	std::cout << "Code : ";
 	std::cin >> code;
 	std::cout << "Intitule : ";
@@ -252,22 +255,28 @@ void Interface :: saisirDonneesDuneUE()
 	std::cin >> heuresTP;
 	std::cout << "ECTS : ";
 	std::cin >> ECTS;
-	UE* ue = new UE{code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS};
 }
 
-void Interface :: ajouterUEsimple()
+void Interface :: ajouterUEsimple(Maquette* maquette)
 {
 	System::effacerEcran();
 	System::centrerTexte("Ajout UE simple",System::LARGEUR_CONSOLE);
-	saisirDonneesDuneUE();
+	std::string code,intitule;
+	int coefficient,heuresCM,heuresTD,heuresTP,ECTS;
+	saisirDonneesDuneUE(code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS);
+	UE* ue = new UE{code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS};
 	std::cout << "UE creee avec succes ! " << std::endl;
+	maquette->ajouterUE(ue);
 }
 
-void Interface :: ajouterUEcomposee()
+void Interface :: ajouterUEcomposee(Maquette* maquette)
 {
 	System::effacerEcran();
 	System::centrerTexte("Ajout UE composée",System::LARGEUR_CONSOLE);
-	saisirDonneesDuneUE();
+	std::string code,intitule;
+	int coefficient,heuresCM,heuresTD,heuresTP,ECTS;
+	saisirDonneesDuneUE(code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS);
+	UE* ue = new UE{code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS};
 	std::cout << "Voulez-vous Ajouter une ECUE ?" << std::endl;
 	std::cout << "\t (1) Oui " << std::endl;
 	std::cout << "\t (2) Non " << std::endl;
@@ -276,17 +285,16 @@ void Interface :: ajouterUEcomposee()
 	switch(choix)
 	{
 		case 1:
-			ajouterECUE();
+			ajouterECUE(ue);
 			break;
 		case 2:
 			break;
 	}
+	maquette->ajouterUE(ue);
 }
 
-void Interface :: saisirDonneesDuneECUE()
+void Interface :: saisirDonneesDuneECUE(std::string& code, std::string& intitule,int& coefficient,int& heuresCM,int& heuresTD,int& heuresTP)
 {
-	std::string code,intitule;
-	int coefficient,heuresCM,heuresTD,heuresTP;
 	std::cout << "Code : ";
 	std::cin >> code;
 	std::cout << "Intitule : ";
@@ -299,18 +307,22 @@ void Interface :: saisirDonneesDuneECUE()
 	std::cin >> heuresTD;
 	std::cout << "Heures TP : ";
 	std::cin >> heuresTP;
-	ECUE* ecue = new ECUE{code,intitule,coefficient,heuresCM,heuresTD,heuresTP};
+
 }
 
-void Interface::ajouterECUE()
+void Interface::ajouterECUE(UE* ue)
 {
 	System::effacerEcran();
 	System::centrerTexte("Ajout ECUE",System::LARGEUR_CONSOLE);
-	saisirDonneesDuneECUE();
+	std::string code,intitule;
+	int coefficient,heuresCM,heuresTD,heuresTP;
+	saisirDonneesDuneECUE(code,intitule,coefficient,heuresCM,heuresTD,heuresTP);
+	ECUE* ecue = new ECUE{code,intitule,coefficient,heuresCM,heuresTD,heuresTP};
 	std::cout << "ECUE creee avec succes ! " << std::endl;
+	ue->ajouterECUE(ecue);
 }
 		//Menu UEchoix	
-void Interface::menuUEchoix(int& choix)
+void Interface::menuUEchoix(int& choix,Maquette* maquette)
 {
 	do
 	{
