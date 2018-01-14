@@ -86,6 +86,9 @@ namespace GestionMaquettes
         		*/
 			void afficherListeMaquettes() const;
 			
+			/** Fonction sauverDansFichier
+			 *	Permet de sauvegarder une formation dans un fichier txt portant la mention de la formation. Le fichier se trouve dans le dossier "Sauvegardes"
+			 */
 			void sauverDansFichier() const;
 		
 		private :
