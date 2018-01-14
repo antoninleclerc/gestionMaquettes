@@ -1,6 +1,6 @@
 #include "doctest.h"
-#include "formation.h" 
-#include "maquette.h"
+#include "Formation.h" 
+#include "Maquette.h"
 
 
 TEST_CASE {"Construction d'une formation "}
