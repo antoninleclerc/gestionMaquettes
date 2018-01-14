@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include "System.h"
 
@@ -9,9 +10,9 @@ namespace System
 	void centrerTexte(const std::string &chaine, int largeurConsole)
 	{
 	    int n;
-	    for (n = 0; n < (largeurConsole-chaine.size()) / 2; n++)
+	    for (n = 0; n < (largeurConsole-chaine.size())/2 ; n++)
 	    {
-	        std::cout<<' ';
+	        std::cout<<" ";
 	    }
 	    std::cout<<chaine<<std::endl<<std::endl;
 	}
@@ -44,5 +45,11 @@ namespace System
 	 	fo << ancienContenu + chaineAajouter + "\n";
 		fo.close();
 	}		
-	
+
+	std::string intToString(int i)
+	{
+		std::ostringstream oss;
+		oss << i;
+		return oss.str();
+	}
 }

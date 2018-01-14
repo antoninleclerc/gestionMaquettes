@@ -3,6 +3,7 @@
 
 #include "Interface.h"
 #include "Formation.h"
+#include "UEchoix.h"
 #include "System.h"
 
 namespace GestionMaquettes
@@ -10,55 +11,27 @@ namespace GestionMaquettes
 	Interface::Interface(): d_formations()
 	{
 		chargeFormations();
-		int choix;
-	  	menuPrincipalChoix(choix);
+	  	menuPrincipalChoix();
 	}
 	
-	void Interface::menuPrincipalChoix(int& choix)
+	void Interface::menuPrincipalChoix()
 	{
+		int choix;
 		do
 	  	{
+	  		System::effacerEcran();
 	  		std::cout<<std::endl;
 	  		System::centrerTexte("-------------------------------------------------------------",System::LARGEUR_CONSOLE);
 	  		System::centrerTexte("|           Maquettes des formations universitaires           |",System::LARGEUR_CONSOLE);
 	  		System::centrerTexte("-------------------------------------------------------------",System::LARGEUR_CONSOLE);
 			System::centrerTexte("---------------------- Le menu principal --------------------",System::LARGEUR_CONSOLE);
-	    	System::centrerTexte("(1) Menu formation",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("\t Ajouter une formation",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("\t Modifier une formation",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("\t Supprimer une formation",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("(2) Menu maquette",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte(" Ajouter une maquette",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("\t Modifier une maquette",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("\t Supprimer une maquette",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("(3) Quitter",System::LARGEUR_CONSOLE-49);
-	  		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);
-	    	std::cin >> choix;
-	  	}
-	  	while (choix < 1 || choix > 3);
-		switch (choix)
-		{
-	  		case 1: menuFormation(choix); break;
-	  		case 2: menuMaquette(choix); break;
-		}
-	  	System::effacerEcran();
-		if(choix==3)
-			return;
-	}
-	
-	void Interface::menuFormation(int& choix)
-	{
-		do
-	  	{
-	  		System::effacerEcran();
-	  		std::cout<<std::endl;
-			System::centrerTexte("------------------------- Menu formation -----------------------",System::LARGEUR_CONSOLE);
+	    	System::centrerTexte("Menu formation",System::LARGEUR_CONSOLE-42);
 	  		System::centrerTexte("\t (1) Ajouter une formation",System::LARGEUR_CONSOLE-42);
 	  		System::centrerTexte("\t (2) Modifier une formation",System::LARGEUR_CONSOLE-42);
 	  		System::centrerTexte("\t (3) Supprimer une formation",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("(4) Quitter",System::LARGEUR_CONSOLE-51);
-	  		System::centrerTexte("(5) Retour",System::LARGEUR_CONSOLE-51);
-	  		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);
+	  		System::centrerTexte("\t (4) Afficher une formation",System::LARGEUR_CONSOLE-42);
+	  		System::centrerTexte("\t (5) Quitter",System::LARGEUR_CONSOLE-49);
+	  		System::centrerTexte("\t Votre choix : ",System::LARGEUR_CONSOLE-47);
 	    	std::cin >> choix;
 	  	}
 	  	while (choix < 1 || choix > 5);
@@ -67,14 +40,13 @@ namespace GestionMaquettes
 	  		case 1: ajouterFormation(); break;
 	  		case 2: modifierFormation(); break;
 	  		case 3: supprimerFormation(); break;
+	  		case 4: afficherFormation(); break;
 		}
 	  	System::effacerEcran();
-		if(choix==4)
+		if(choix==5)
 			return;
-		else if(choix=5)
-			menuPrincipalChoix(choix);
-			
 	}
+	
 	
 	void Interface::ajouterFormation()
 	{
@@ -92,39 +64,25 @@ namespace GestionMaquettes
 		std::cin >> nombreAnnee;
 		Formation* formation= new Formation{nombreAnnee, domaineFormation, mentionFormation ,parcoursFormation};
 		System::effacerEcran();
-		std::cout << "Formation creee avec succes ! " << std::endl;
-		std::cout << "Souhaitez vous ajouter les maquettes? " << std::endl;
-		std::cout << "\t (1) Oui" << std::endl;
-		std::cout << "\t (2) Non" << std::endl;
-		std::cout << "Votre choix : " << std::endl;
-		int choix;
-		std::cin >> choix;
-		while(choix !=1 && choix !=2)
+		std::cout << "Formation creee avec succes !" << std::endl;
+		std::cout << "Vous allez passez a la saisie des maquettes." << std::endl;
+		system("pause");
+		for(int numeroAnnee=1; numeroAnnee<=formation->nombreAnnee();numeroAnnee++)
 		{
-			System::effacerEcran();
-			std::cout << "Souhaitez vous ajouter les maquettes? " << std::endl;
-			std::cout << "\t (1) Oui" << std::endl;
-			std::cout << "\t (2) Non" << std::endl;
-			std::cout << "Votre choix : " << std::endl;
-			std::cin >> choix;
-		}
-		if(choix == 1)
-		{
-			for(int numeroAnnee=1; numeroAnnee<=formation->nombreAnnee();numeroAnnee++)
+			for(int numeroSemestre=1; numeroSemestre<=2;numeroSemestre++)
 			{
-				for(int numeroSemestre=1; numeroSemestre<=formation->nombreAnnee()*2;numeroSemestre++)
-				{
-					System::effacerEcran();
-					std::cout<<formation->mention()<<" "<<numeroAnnee<<" "<<formation->parcours()<<" Semestre "<<numeroSemestre<<std::endl;
-					formation->ajouterMaquette(MaquetteCree());
-				}
+				System::effacerEcran();
+				std::cout<<formation->mention()<<" "<<numeroAnnee<<" "<<formation->parcours()<<" Semestre "<<numeroSemestre<<std::endl;
+				formation->ajouterMaquette(MaquetteCree());
 			}
-			std::cout << "Les maquettes ont ete bien enregistrees." << std::endl;
-			system("pause");
 		}
 		d_formations.push_back(formation);
 	  	mettreAJourFichierListeFormations();
+		std::cout << "Les maquettes ont ete bien enregistrees." << std::endl;
+		system("pause");
+		menuPrincipalChoix();
 	}
+	
 	
 	void Interface::modifierFormation()
 	{
@@ -142,6 +100,8 @@ namespace GestionMaquettes
 				std::cout << "Votre choix : " << std::endl;
 				std::cin >> numeroFormation;
 			}
+			choixModification(d_formations[numeroFormation-1]);
+			
 			d_formations[numeroFormation-1]->afficherListeMaquettes();
 			if(d_formations[numeroFormation-1]->nombreMaquettes()!=0)
 			{
@@ -156,10 +116,86 @@ namespace GestionMaquettes
 					std::cout << "Votre choix : " << std::endl;
 					std::cin >> numeroMaquette;
 				}
-				std::cout<<"Vous etes sur le point de modifier la maquette "<< d_formations[numeroFormation-1]->mention()<<" "<<numeroMaquette<<" "<<d_formations[numeroFormation-1]->parcours()<<std::endl;
+				System::effacerEcran();
 				//modification
 			}
 		}
+		menuPrincipalChoix();
+	}
+	
+	void Interface::choixModification(Formation *formation)
+	{
+		System::effacerEcran();
+		std::cout << std::endl << "Que voulez-vous modifier?" << std::endl;
+		std::cout << std::endl << "(1) Modifier le domaine" << std::endl;
+		std::cout << std::endl << "(2) Modifier la mention" << std::endl;
+		std::cout << std::endl << "(3) Modifier le parcours" << std::endl;
+		std::cout << std::endl << "(4) Modifier une maquette" << std::endl;
+		std::cout << "Votre choix : " << std::endl;
+		int choix;
+		std::cin >> choix;
+		while(choix<1 || choix>4)
+		{
+			System::effacerEcran();
+			std::cout << std::endl << "Que voulez-vous modifier?" << std::endl;
+			std::cout << std::endl << "(1) Modifier le domaine" << std::endl;
+			std::cout << std::endl << "(2) Modifier la mention" << std::endl;
+			std::cout << std::endl << "(3) Modifier le parcours" << std::endl;
+			std::cout << std::endl << "(4) Modifier une maquette" << std::endl;
+			std::cout << std::endl << "(5) Retour" << std::endl;
+			std::cout << "Votre choix : " << std::endl;
+			std::cin >> choix;
+		}
+		while (choix < 1 || choix > 5);
+	  	switch (choix)
+		{
+	  		case 1: modifierDomaine(formation); break;
+	  		case 2: modifierMention(formation); break;
+	  		case 3: modifierParcours(formation); break;
+	  		case 4: modifierMaquette(formation); break;
+	  		case 5: modifierFormation(); break;
+		}
+		menuPrincipalChoix();
+	}
+	
+	void Interface::modifierDomaine(Formation *formation)
+	{
+		System::effacerEcran();
+		std::cout << "Nouveau domaine : " << std::endl;
+		std::string nouveauDomaine;
+		std::cin >> nouveauDomaine;
+		formation->modifierDomaine(nouveauDomaine);
+		std::cout << "Domaine mis a jour. " << std::endl;
+		system("pause");
+	}
+	
+	void Interface::modifierMention(Formation *formation)
+	{
+		System::effacerEcran();
+		std::cout << "Nouvelle mention : " << std::endl;
+		std::string nouveauMention;
+		std::cin >> nouveauMention;
+		formation->modifierMention(nouveauMention);
+		mettreAJourFichierListeFormations();
+		std::cout << "Mention mise a jour. " << std::endl;
+		system("pause");
+	}
+	
+	void Interface::modifierParcours(Formation *formation)
+	{
+		System::effacerEcran();
+		std::cout << "Nouveau parcours : " << std::endl;
+		std::string nouveauParcours;
+		std::cin >> nouveauParcours;
+		formation->modifierParcours(nouveauParcours);
+		mettreAJourFichierListeFormations();
+		std::cout << "Parcours mis a jour. " << std::endl;
+		system("pause");
+	}
+	
+	void Interface::modifierMaquette(Formation *formation)
+	{
+		
 	}
 	
 	void Interface::supprimerFormation()
@@ -183,6 +219,7 @@ namespace GestionMaquettes
 			else
 				std::cout << "La formation n'a pas pu etre supprimee." << std::endl;
 			system("pause");
+			menuPrincipalChoix();
 		}
 		
 	}
@@ -225,7 +262,7 @@ namespace GestionMaquettes
 	  	while (choix < 1 || choix > 5);
 	  	switch (choix)
 		{
-	  		case 1: /*ajouterMaquette*/; break;
+	  		case 1: ajouterMaquette(); break;
 	  		case 2: /*modifierMaquette*/; break;
 	  		case 3: /*supprimerMaquette*/; break;
 		}
@@ -233,7 +270,12 @@ namespace GestionMaquettes
 	  	if(choix==4)
 			return;
 		else if(choix=5)
-			menuPrincipalChoix(choix);
+			menuPrincipalChoix();
+	}
+	
+	void Interface :: ajouterMaquette()
+	{
+		
 	}
 	
 	Maquette* Interface :: MaquetteCree()
@@ -255,7 +297,7 @@ namespace GestionMaquettes
 				ajouterUEcomposee(maquette);
 				break;
 			case 3:
-				//ajouterUEchoix(maquette);
+				ajouterUEchoix(maquette);
 				break;
 		}
 		do
@@ -282,7 +324,7 @@ namespace GestionMaquettes
 						ajouterUEcomposee(maquette);
 						break;
 					case 3:
-						//ajouterUEchoix(maquette);
+						ajouterUEchoix(maquette);
 						break;
 				}
 			}
@@ -312,7 +354,7 @@ namespace GestionMaquettes
 				ajouterUE(maquette);
 				break;
 	  		case 2: 
-				menuPrincipalChoix(choix);	
+				menuPrincipalChoix();	
 		   		break;
 	  		case 3:
 				return;
@@ -378,7 +420,7 @@ namespace GestionMaquettes
 	void Interface :: ajouterUEcomposee(Maquette* maquette)
 	{
 		System::effacerEcran();
-		System::centrerTexte("Ajout UE composée",System::LARGEUR_CONSOLE);
+		System::centrerTexte("Ajout UE composee",System::LARGEUR_CONSOLE);
 		std::string code,intitule;
 		int coefficient,heuresCM,heuresTD,heuresTP,ECTS;
 		saisirDonneesDuneUE(code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS);
@@ -401,7 +443,7 @@ namespace GestionMaquettes
 		{
 			System::effacerEcran();
 			std::cout << std::endl << "Voulez-vous :" << std::endl;
-			std::cout << "\t (1) Continuer a ajouter un ECUE" << std::endl;
+			std::cout << "\t (1) Continuer a ajouter une ECUE" << std::endl;
 			std::cout << "\t (2) Passer a l'UE suivant" << std::endl;
 			std::cout << "Votre choix : " << std::endl;
 			std::cin >> choix;
@@ -410,7 +452,8 @@ namespace GestionMaquettes
 				ajouterECUE(ue);
 			}
 		}
-		while(choix==1);	
+		while(choix==1);
+		System::effacerEcran();	
 		maquette->ajouterUE(ue);
 	}
 	
@@ -428,7 +471,6 @@ namespace GestionMaquettes
 		std::cin >> heuresTD;
 		std::cout << "Heures TP : ";
 		std::cin >> heuresTP;
-	
 	}
 	
 	void Interface::ajouterECUE(UE* ue)
@@ -453,42 +495,96 @@ namespace GestionMaquettes
 			std::cout<<"Voulez-vous :"<<std::endl;
 	  		System::centrerTexte("\t (1) Ajouter une UE choix",System::LARGEUR_CONSOLE-42);
 	  		System::centrerTexte("\t (2) Supprimer une UE choix",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("\t (3) Afficher une UE choix",System::LARGEUR_CONSOLE-42);
-	  		System::centrerTexte("(4) Quitter",System::LARGEUR_CONSOLE-51); 
-	  		System::centrerTexte("(5) Retour",System::LARGEUR_CONSOLE-51);	
+	  		System::centrerTexte("(3) Quitter",System::LARGEUR_CONSOLE-51); 
+	  		System::centrerTexte("(4) Retour",System::LARGEUR_CONSOLE-51);	
 	  		System::centrerTexte("Votre choix : ",System::LARGEUR_CONSOLE-47);	
 			std::cin>>choix;	
-		}while (choix < 1 || choix >5);
+		}while (choix < 1 || choix >4);
 		switch(choix)
 		{
 					case 1 :
-						//ajouterUEchoix();
+						ajouterUEchoix(maquette);
 						break;
 					case 2 :
 						//supprimerUEchoix();
 						break;
-					case 3 :
-						/*AfficherUEchoix()**/
-						break;
 		}
 		System::effacerEcran();
-	  	if(choix==4)
+	  	if(choix==3)
 			return;
-		else if(choix=5)
-			menuPrincipalChoix(choix);
+		else if(choix=4)
+			menuPrincipalChoix();
+	}
+	
+	void Interface::ajouterUEchoix(Maquette* maquette)
+	{
+		System::effacerEcran();
+		System::centrerTexte("Ajout UE choix",System::LARGEUR_CONSOLE);
+		std::string code, intitule;
+		int coefficient, heuresCM, heuresTD, heuresTP, ECTS;
+		saisirDonneesDuneUE(code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS);
+		UEchoix* uechoix = new UEchoix{code,intitule,coefficient,heuresCM,heuresTD,heuresTP,ECTS};
+		std::cout << "UE choix creee avec succes ! " << std::endl;
+		std::cout << "Voulez-vous ajouter une UE a votre UE choix ?" << std::endl;
+		std::cout << "\t (1) Oui " << std::endl;
+		std::cout << "\t (2) Non " << std::endl;
+		std::cout << "Votre choix : " << std::endl;
+		int choix;
+		std::cin>>choix;
+		std::string codeChoix, intituleChoix;
+		int coefficientChoix, heuresCMChoix, heuresTDChoix, heuresTPChoix, ECTSChoix;
+		if(choix==1)
+		{
+				saisirDonneesDuneUE(codeChoix,intituleChoix,coefficientChoix,heuresCMChoix,heuresTDChoix,heuresTPChoix,ECTSChoix);
+				UE* ue = new UE{codeChoix,intituleChoix,coefficientChoix,heuresCMChoix,heuresTDChoix,heuresTPChoix,ECTSChoix};
+				uechoix->ajouterUE(ue);
+		}
+			do
+			{
+				System::effacerEcran();
+				std::cout << std::endl << "Voulez-vous :" << std::endl;
+				std::cout << "\t (1) Continuer a ajouter une UE a votre UE choix" << std::endl;
+				std::cout << "\t (2) Quitter" << std::endl;
+				std::cout << "Votre choix : " << std::endl;
+				std::cin >> choix;
+				if(choix==1)
+				{
+					saisirDonneesDuneUE(codeChoix,intituleChoix,coefficientChoix,heuresCMChoix,heuresTDChoix,heuresTPChoix,ECTSChoix);
+					UE* ue = new UE{codeChoix,intituleChoix,coefficientChoix,heuresCMChoix,heuresTDChoix,heuresTPChoix,ECTSChoix};
+					uechoix->ajouterUE(ue);
+				}
+			}while(choix==1);
+		maquette->ajouterUE(uechoix);
 	}
 	
 	 void Interface::mettreAJourFichierListeFormations() const
 	 {
-		std::ofstream fo;
-		fo.open ("Liste formations.txt");
+		std::ofstream fListeFormations;
+		fListeFormations.open ("Liste formations.txt");
 		std::string nouveauContenu="";
 		for(int i=0; i<d_formations.size();i++)
 		{
 		 	nouveauContenu+= d_formations[i]->mention() + " " + d_formations[i]->parcours() + "\n";
 		}
-		fo << nouveauContenu;
-		fo.close();
+		fListeFormations << nouveauContenu;
+		fListeFormations.close();
+	 }
+	 
+	  void Interface::mettreAJourFichierListeMaquettes() const
+	 {	
+	 
+		std::ofstream fListeMaquettes;
+		fListeMaquettes.open ("Liste maquettes.txt");
+		std::string annee="", semestre="", titreMaquette="";
+		for(int numeroAnnee=1; numeroAnnee<=d_formations[numeroAnnee-1]->nombreAnnee(); numeroAnnee++)
+			for(int numeroSemestre=1; numeroSemestre<=d_formations[numeroAnnee-1]->nombreMaquettes(); numeroSemestre++)
+		 	{
+		 		annee+= d_formations[numeroAnnee-1]->mention() + " " + System::intToString(numeroAnnee);
+				semestre+= d_formations[numeroAnnee]->parcours() + "Semestre" + System::intToString(numeroSemestre) + "\n";
+				titreMaquette+=annee + " " + semestre;
+			}
+		fListeMaquettes << annee << semestre;
+		fListeMaquettes.close();
 	 }
 
 	void Interface::chargeFormations()
@@ -505,10 +601,10 @@ namespace GestionMaquettes
 	void Interface :: afficherListeFormations() const
 	{
 		System::effacerEcran();
-		std::cout<<"Liste maquettes"<<std::endl<<std::endl;
+		std::cout<<"Liste formations"<<std::endl<<std::endl;
 		if(d_formations.size()==0)
 		{
-	 		std::cout<<"Il n'y aucune maquette dans la liste."<<std::endl;
+	 		std::cout<<"Il n'y aucune formations dans la liste."<<std::endl;
 			system("pause");
 		}
 		else
@@ -516,6 +612,34 @@ namespace GestionMaquettes
 			{
 				std::cout<<"("<<i+1<<") "<<d_formations[i]->mention()<<" "<<d_formations[i]->parcours()<<std::endl;
 			}
+	}
+	
+	void Interface::afficherFormation()
+	{
+		afficherListeFormations();
+		if(d_formations.size()!=0)
+		{
+			std::cout << std::endl << "Tapez le numero de la formation que vous voulez afficher :" << std::endl;
+			std::cout << "Votre choix : " << std::endl;
+			int numeroFormation;
+			std::cin >> numeroFormation;
+			while(numeroFormation<1 || numeroFormation>d_formations.size())
+			{
+				afficherListeFormations();
+				std::cout << std::endl << "Tapez le numero de la formation que vous voulez afficher :" << std::endl;
+				std::cout << "Votre choix : " << std::endl;
+				std::cin >> numeroFormation;
+			}
+			afficherMaquettesDeLaFormationNumero(numeroFormation);
+		}
+		menuPrincipalChoix();
+	}
+	
+	void Interface::afficherMaquettesDeLaFormationNumero(int numeroFormation) const
+	{
+		System::effacerEcran();
+		std::cout<<*d_formations[numeroFormation-1]<<std::endl;
+		system("pause");
 	}
 
 }

@@ -5,9 +5,11 @@
 #include "System.h"
 #include "Interface.h"
 
+
+#include "UE.h"
 int main(int argc, char** argv) 
 {
-	system("MODE CON COLS=160 LINES=70");
+	system("MODE CON COLS=90 LINES=30");
 	GestionMaquettes::Interface i;
 	return 0;
 }

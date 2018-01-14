@@ -13,14 +13,19 @@ namespace GestionMaquettes
 	{
 		public:
 			Interface();
-			void menuPrincipalChoix(int& choix);
-			void menuFormation(int& choix);
+			void menuPrincipalChoix();
 			void ajouterFormation();
 			void supprimerFormation();
 			bool supprimerFormationNumero(int numeroFormation);
 			void modifierFormation();
+			void choixModification(Formation *formation);
+			void modifierDomaine(Formation *formation);
+			void modifierMention(Formation *formation);
+			void modifierParcours(Formation *formation);
+			void modifierMaquette(Formation *formation);
 			
 			void menuMaquette(int& choix);
+			void ajouterMaquette();
 			Maquette* MaquetteCree();
 			
 			void menuUE(int& choix, Maquette* maquette);
@@ -32,9 +37,13 @@ namespace GestionMaquettes
 			void ajouterECUE(UE* ue);
 		
 	    	void menuUEchoix(int& choix, Maquette* maquette);
+	    	void ajouterUEchoix(Maquette* maquette);
 	    	void mettreAJourFichierListeFormations() const;
+	    	void mettreAJourFichierListeMaquettes() const;
 	    	void chargeFormations();
 	    	void afficherListeFormations() const;
+	    	void afficherFormation();
+	    	void afficherMaquettesDeLaFormationNumero(int numeroFormation) const;
 	    private:
 	    	std::vector<Formation*> d_formations;	
 	};

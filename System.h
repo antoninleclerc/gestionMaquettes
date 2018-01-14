@@ -8,7 +8,8 @@ namespace System
 	void centrerTexte(const std::string &chaine, int largeurConsole);
 	void effacerEcran();
 	void ajouterFinFichier(const std::string &chaineAajouter, const std::string &nomFichier);
-	static const int LARGEUR_CONSOLE=160;
+	static const int LARGEUR_CONSOLE=90;
+	std::string intToString(int i);
 }
 
 #endif
