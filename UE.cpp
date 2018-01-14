@@ -3,13 +3,13 @@
 
 /**
 	Constructeur
-	@param[in] code - chaine de caractËre reprÈsentant le code
-	@param[in] intitule - chaine de caractËre reprÈsentant l'intitulÈ
-	@param[in] coefficient - chaine de caractËre reprÈsentant le coefficient
-	@param[in] CM - un entier reprÈsentant le nombre d'heure CM
-	@param[in] TD - un entier reprÈsentant le nombre d'heure TD
-	@param[in] TP - un entier reprÈsentant le nombre d'heure TP
-	@param[in] ECTS - un entier reprÈsentant le nombre d'ECTS
+	@param[in] code - chaine de caract√®re repr√©sentant le code
+	@param[in] intitule - chaine de caract√®re repr√©sentant l'intitul√©
+	@param[in] coefficient - chaine de caract√®re repr√©sentant le coefficient
+	@param[in] CM - un entier repr√©sentant le nombre d'heure CM
+	@param[in] TD - un entier repr√©sentant le nombre d'heure TD
+	@param[in] TP - un entier repr√©sentant le nombre d'heure TP
+	@param[in] ECTS - un entier repr√©sentant le nombre d'ECTS
 */
 UE::UE(const std::string &code, const std::string &intitule, int coefficient, int CM, int TD, int TP, int ECTS): Cours{code, intitule, coefficient}, d_ECTS{ECTS}
 {
@@ -108,7 +108,7 @@ void UE::ajouterECUE(ECUE*ecue)
 
 /**
 	Modifie l'ECTS
-	@param[in] ECTS - un entier reprÈsentant le nouveau ECTS
+	@param[in] ECTS - un entier repr√©sentant le nouveau ECTS
 */
 void UE::modifierECTS(int ECTS)
 {
@@ -116,9 +116,9 @@ void UE::modifierECTS(int ECTS)
 }
 
 /*
-	Supprime l'ECUE ‡ partir d'un code
-	@param[in] code - une chaine de caractËre reprÈsentant le code UE
-	@return vrai si suppression rÈussie
+	Supprime l'ECUE √† partir d'un code
+	@param[in] code - une chaine de caract√®re repr√©sentant le code UE
+	@return vrai si suppression r√©ussie
 */
 bool UE::supprimerECUE(const std::string &code)
 {
@@ -145,7 +145,7 @@ bool UE::supprimerECUE(const std::string &code)
 */
 void UE::affiche(std::ostream &ost) const
 {	
-	if(nombreECUE()>0) //si UE composÈ de au moins un ECUE
+	if(nombreECUE()>0) //si UE compos√© de au moins un ECUE
 	{
 		ost<<std::setw(4)<<d_UE[0]->code()<<std::setw(4)<<d_UE[0]->coefficient()<<std::setw(4)<<ECTS()<<std::setw(20)<<" UE "<<d_UE[0]->intitule()<<std::endl;
 		for(int i=1; i<=nombreECUE(); i++)
@@ -155,5 +155,27 @@ void UE::affiche(std::ostream &ost) const
 	{
 		ost<<std::setw(4)<<d_UE[0]->code()<<std::setw(4)<<d_UE[0]->coefficient()<<std::setw(4)<<ECTS()<<std::setw(20)<<"UE "<<d_UE[0]->intitule()<<std::setw(4)<<totalHeuresCM()<<std::setw(4)<<totalHeuresTD()<<std::setw(4)<<totalHeuresTP()<<std::setw(4)<<totalNombreHeures()<<std::endl;
 	}		
+}
+
+void UE::enregistrerUE(const std::string &mention) const {
+	std::ofstream fichier;
+	fichier.open("Sauvegarde/" + mention, std::ios::out | std::ios::app);
+	
+	
+	if(fichier){
+		if(nombreECUE()>0) //si UE compos√© de au moins un ECUE
+		{
+			fichier << std::setw(15) << std::left << d_UE[0]->code() << std::setw(10) << std::left << d_UE[0]->coefficient() << std::setw(4) << std::left << ECTS() << std::setw(40) << std::left << " UE " << d_UE[0]->intitule() << std::endl;
+			for(int i = 1; i <= nombreECUE(); i++)
+				d_UE[i]->enregistrerECUE(mention);
+		}
+		else //si UE seule
+		{
+			fichier << std::setw(15) << std::left << d_UE[0]->code() << std::setw(10) << std::left << d_UE[0]->coefficient() << std::setw(4) << std::left << ECTS() << std::setw(40) << std::left << "UE " << d_UE[0]->intitule() << std::setw(4) << std::left << totalHeuresCM() << std::setw(4) << std::left << totalHeuresTD() << std::setw(4) << std::left << totalHeuresTP() << std::setw(4) << std::left << totalNombreHeures() << std::endl;
+		}
+	}
+	else
+		std::cout << "Impossible d'ouvrir le fichier" << std::endl;
+	fichier.close();
 }
 
