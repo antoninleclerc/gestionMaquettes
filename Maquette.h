@@ -34,6 +34,12 @@ namespace GestionMaquettes
         		 *	@retourne le nombre d'UE dans une maquette
          		*/
 			int nombreUEDansMaquette() const; 
+		
+			/**	Fonction enregistrerMaquette
+			 *	Permet d'enregistrer une maquette dans le fichier txt portant le nom de la mention de la formation à laquelle appartient la maquette
+			 *	@param[in] mention : le nom du fichier txt
+			 */
+			void enregistrerMaquette(const std::string &mention) const;
 				
 		private :
 			/**
