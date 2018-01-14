@@ -2,6 +2,7 @@
 #define ECUE_H
 
 #include "Cours.h"
+#include <fstream>
 
 /**	@class ECUE
  *	@brief classe représentant une ECUE
@@ -60,6 +61,12 @@ class ECUE : public Cours {
 		 *	Permet d'afficher une ECUE
 		 */
 		void affiche(std::ostream& ost) const;
+		
+		/**	Fonction enregistrerECUE
+		 *	Permet d'enregistrer une ECUE dans le fichier txt portant le nom de la mention de la formation � laquelle appartient l'ECUE
+		 *	@param[in] mention : le nom du fichier txt
+		 */
+		void enregistrerECUE(const std::string &mention) const;
 		
 	private:
 		/**	Données privées d'une ECUE
