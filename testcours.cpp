@@ -1,5 +1,5 @@
 #include "doctest.h"
-#include "cours.h" 
+#include "Cours.h" 
 
 
 TEST_CASE {"Construction d'un cours "}
