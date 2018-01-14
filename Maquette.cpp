@@ -56,11 +56,5 @@ namespace GestionMaquettes
 		m.afficheMaquette(ost);
 		return ost;
 	}
-	
-	void Maquette::enregistrerMaquette(const std::string &mention) const {
-		for (int i = 0; i < d_UE.size(); i++){
-			d_UE[i]->enregistrerUE(mention); 
-		}
-	}
 }
 
