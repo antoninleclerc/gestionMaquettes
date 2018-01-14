@@ -9,21 +9,25 @@ class UEchoix: public UE
 {
     public:
     	/** Constructeur d'une UE choix
-		*	@brief Constructeur d'une UE choix à partir d'un code, d'un intitule, d'un coefficient,des heures CM, des heures TD, des heures TP et d'un ECTS
-		*	@param[in] code - chaine de caractère représentant le code
-		*	@param[in] intitule - chaine de caractère représentant l'intitulé
-		*	@param[in] coefficient - chaine de caractère représentant le coefficient
-		*	@param[in] heuresCM - un entier représentant le nombre d'heure CM
-		*	@param[in] heuresTD - un entier représentant le nombre d'heure TD
-		*	@param[in] heuresTP - un entier représentant le nombre d'heure TP
-		*	@param[in] ECTS - un entier représentant le nombre d'ECTS
-		*/
+		 *	@brief Constructeur d'une UE choix à partir d'un code, d'un intitule, d'un coefficient,des heures CM, des heures TD, des heures TP et d'un ECTS
+	   	 *	@param[in] code - chaine de caractère représentant le code
+		 *	@param[in] intitule - chaine de caractère représentant l'intitulé
+		 *	@param[in] coefficient - chaine de caractère représentant le coefficient
+		 *	@param[in] heuresCM - un entier représentant le nombre d'heure CM
+		 *	@param[in] heuresTD - un entier représentant le nombre d'heure TD
+		 *	@param[in] heuresTP - un entier représentant le nombre d'heure TP
+		 *	@param[in] ECTS - un entier représentant le nombre d'ECTS
+		 */
         UEchoix(const std::string &code, const std::string &intitule, int coefficient, int heuresCM, int heuresTD, int heuresTP, int ECTS);
         
         /** destructeur d'UE choix
-        */
+         */
         virtual ~UEchoix();
         
+        /** Fonction nombreUE
+         *  Renvoie le nombre d'UE contenu dans l'UE a choix
+         */
+        int nombreUE() const;
 		/** Fonction ajouterUE
 		*	Permet d'ajouter une UE au vecteur d'UE choix
 		*	@param[in] ue - Pointeur d=sur l'ue à ajouter

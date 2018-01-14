@@ -10,6 +10,11 @@ UEchoix::UEchoix(const std::string &code, const std::string &intitule, int coeff
 UEchoix::~UEchoix()
 {}
 
+int UEchoix::nombreUE() const
+{
+	return d_UEchoix.size()-1;
+}
+
 void UEchoix::affiche(std::ostream &ost) const
 {
     ost<<std::setw(4)<<code()<<std::setw(4)<<coefficient()<<std::setw(4)<<ECTS()<<std::setw(4)<<"UE CHOIX"<<std::endl;
