@@ -20,7 +20,7 @@ TEST_CASE("Ajout d'une maquette")
 {
 	maquette m ; 
 	ajouterMaquette(m) ; 
-	REQUIRE_EQ(maquetteNumero(nombreMaquettes), m) ; 
+	REQUIRE_EQ(maquetteNumero(nombreMaquettes()), m) ; 
 }
 
 TEST_CASE("Modification d'une formation")
@@ -52,7 +52,17 @@ TEST_CASE("Modification d'une formation")
 	}
 	
 }
-
+TEST_CASE ("Suppression d'une maquette") 
+{
+	maquette m ; 
+	ajoutMaquette(m) ; 
+	int n = nombreMaquettes();
+	(if supprimerMaquette(maquetteNumero(nombreMaquettes()) == true )
+	{
+		REQUIRE_EQ( nombreMaquettes() , n-1 ) ; 
+	}
+}
+	 
 	
 
 
