@@ -1,26 +1,32 @@
 #include "catch.hpp"
 #include "Formation.h" 
 #include "Maquette.h"
+using namespace GestionFormation ; 
 
-
-TEST_CASE {"Construction d'une formation "}
+TEST_CASE ("Construction d'une formation ")
 {
 	int nbAnnee=3 ; 
 	std:: string domaine="fst" ; 
 	std:: string mention= "Licence Informatique" ; 
 	std::string parcours = "Informatique" ;
-	formation f {nbAnnee, domaine, mention, parcours} ; 
-	REQUIRE_EQ(f.nombreAnnee(), nbAnnee) ; 
-	REQUIRE_EQ(f.domaine(), domaine) ; 
-	REQUIRE_EQ(f.mention(), mention) ; 
-	REQUIRE_EQ(f.parcours(), parcours) ; 
+	Formation f {nbAnnee, domaine, mention, parcours} ; 
+	REQUIRE(f.nombreAnnee()== nbAnnee) ; 
+	REQUIRE(f.domaine()== domaine) ; 
+	REQUIRE(f.mention()== mention) ; 
+	REQUIRE(f.parcours()== parcours) ; 
 }
 
 TEST_CASE("Ajout d'une maquette")
 {
-	maquette m ; 
-	ajouterMaquette(m) ; 
-	REQUIRE_EQ(maquetteNumero(nombreMaquettes()), m) ; 
+	int nbAnnee=3 ; 
+	std:: string domaine="fst" ; 
+	std:: string mention= "Licence Informatique" ; 
+	std::string parcours = "Informatique" ;
+	Formation f {nbAnnee, domaine, mention, parcours} ; 
+	int n =f.nombreMaquettes() ; 
+	Maquette *m ; 
+	f.ajouterMaquette(m) ; 
+	REQUIRE(f.nombreMaquettes()== n+1 ) ; 
 }
 
 TEST_CASE("Modification d'une formation")
@@ -29,37 +35,43 @@ TEST_CASE("Modification d'une formation")
 	std:: string domaine="fst" ; 
 	std:: string mention= "Licence Informatique" ; 
 	std::string parcours = "Informatique" ;
-	formation f {nbAnnee, domaine, mention, parcours} ; 
-	SECTION {"nombre d'année modifié"}
+	Formation f {nbAnnee, domaine, mention, parcours} ; 
+	SECTION ("nombre d'année modifié")
 	{
 		f.modifierNombreAnnee(2) ; 
-		REQUIRE_EQ(f.nombreAnnee(), 2) ;
+		REQUIRE(f.nombreAnnee()== 2) ;
 	}
-	SECTION{"Domaine modifié"}
+	SECTION("Domaine modifié")
 	{
 		f.modifierDomaine ("flsh") ; 
-		REQUIRE_EQ(f.domaine(),"flsh" ) ;
+		REQUIRE(f.domaine()=="flsh" ) ;
 	}
-	SECTION{"Mention modifié"}
+	SECTION("Mention modifié"
 	{
 		f.modifierMention("Licence Anglais") ; 
-		REQUIRE_EQ(f.mention(), "Licence Anglais") ;
+		REQUIRE(f.mention()== "Licence Anglais") ;
 	}
-	SECTION{"Parcours modifié"}
+	SECTION("Parcours modifié")
 	{
 		f.modifierParcours("Anglais") ; 
-		REQUIRE_EQ(f.parcours(),"Anglais" ) ;
+		REQUIRE(f.parcours()=="Anglais" ) ;
 	}
 	
 }
 TEST_CASE ("Suppression d'une maquette") 
 {
-	maquette m ; 
-	ajoutMaquette(m) ; 
+	Maquette *m ;
+	int nbAnnee=3 ; 
+	std:: string domaine="fst" ; 
+	std:: string mention= "Licence Informatique" ; 
+	std::string parcours = "Informatique" ;
+	Formation f {nbAnnee, domaine, mention, parcours} ; 
+	f.ajouterMaquette(m) ;
+	
 	int n = nombreMaquettes();
-	(if supprimerMaquette(maquetteNumero(nombreMaquettes()) == true )
+	(if supprimerMaquette(nombreMaquettes() == true )
 	{
-		REQUIRE_EQ( nombreMaquettes() , n-1 ) ; 
+		REQUIRE( nombreMaquettes()== n-1 ) ; 
 	}
 }
 	 
