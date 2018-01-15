@@ -23,6 +23,7 @@ namespace GestionMaquettes
 			void ajouterUE(UE * ue); 
 			/** Fonction affiche
        			 *	@Permet d'afficher une maquette
+			 	@param[out] ost - affichage sur le flot 
        			 */
 			void afficheMaquette(std::ostream & ost) const; 
 			/** Fonction supprimerUE
@@ -32,6 +33,8 @@ namespace GestionMaquettes
 			bool supprimerUE(std::string & code);
 			/** Fonction nombreUEDansMaquette
         		 *	@retourne le nombre d'UE dans une maquette
+			 	@param[out] nbUe - le nombre d'ue dans une maquette 
+	
          		*/
 			int nombreUEDansMaquette() const; 
 		
@@ -42,6 +45,7 @@ namespace GestionMaquettes
 			void enregistrerMaquette(const std::string &mention) const;
 			/** Fonction UeNumero
         		 *	@retourne l'ue 
+			 	@param[out] numero - numero de l'ue 
          		*/
 			UE* Maquette::UeNumero(int numero) const ; 
 		private :
