@@ -40,6 +40,9 @@ namespace GestionMaquettes
 			 *	@param[in] mention : le nom du fichier txt
 			 */
 			void enregistrerMaquette(const std::string &mention) const;
+			/** Fonction UeNumero
+        		 *	@retourne l'ue 
+         		*/
 			UE* Maquette::UeNumero(int numero) const ; 
 		private :
 			/**
