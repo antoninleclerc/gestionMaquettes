@@ -123,28 +123,28 @@ namespace GestionMaquettes
 	}
 	
 	void Formation::sauverDansFichier() const
-		{
-			std::ofstream fichier;
-			std::string nomFichier = mention();
-			fichier.open("Sauvegarde/" + nomFichier, std::ios::out);
+	{
+		std::ofstream fichier;
+		std::string nomFichier = mention() + " " + parcours();
+		fichier.open("Sauvegarde/" + nomFichier, std::ios::out);
 			
-			if(fichier){
-				fichier << std::setw(11) << "DOMAINE : " << domaine() << std::endl;
-				fichier << std::setw(11) << "MENTION : " << mention() << std::endl;
-				fichier << std::setw(11) << "PARCOURS : " << parcours() << std::endl << std::endl;			
-				for(int numeroSemestre = 0; numeroSemestre < nombreMaquettes(); numeroSemestre++){
-					fichier << std::endl;
-					fichier << mention() << " Semestre " << numeroSemestre + 1 << std::endl << std::endl;
-					fichier << std::setw(15) << std::left << "Code UE " << std::setw(10) << std::left << "Coefficient " << std::setw(40) << std::left << "Intitul� UE " <<  std::setw(10) << std::left << "Heures CM " << std::setw(10) << std::left << "Heures TD " << std::setw(10) << std::left << "Heures TP " << std::endl;
-					d_maquettes[numeroSemestre]->enregistrerMaquette(mention());
-					fichier.close();
-					fichier.open("Sauvegarde/" + mention(), std::ios::out | std::ios::app);
-				}
+		if(fichier){
+			fichier << std::setw(11) << std::left << "DOMAINE : " << domaine() << std::endl;
+			fichier << std::setw(11) << std::left << "MENTION : " << mention() << std::endl;
+			fichier << std::setw(11) << std::left << "PARCOURS : " << parcours() << std::endl << std::endl;			
+			for(int numeroSemestre = 0; numeroSemestre < nombreMaquettes(); numeroSemestre++){
+				fichier << std::endl;
+				fichier << mention() << " Semestre " << numeroSemestre + 1 << std::endl << std::endl;
+				fichier << std::setw(10) << std::left << "Code UE " << std::setw(12) << std::left << "Coefficient " << std::setw(5) << std::left << "ECTS " << std::setw(45) << std::left << "Intitulé UE " <<  std::setw(10) << std::left << "Heures CM " << std::setw(10) << std::left << "Heures TD " << std::setw(10) << std::left << "Heures TP "  << std::setw(13) << std::left << "Durée totale "<< std::endl;
+				d_maquettes[numeroSemestre]->enregistrerMaquette(nomFichier);
 				fichier.close();
+				fichier.open("Sauvegarde/" + nomFichier, std::ios::out | std::ios::app);
 			}
-			else
-				std::cout << "Impossible d'ouvrir le fichier" << std::endl;
+			fichier.close();
 		}
+		else
+			std::cout << "Impossible d'ouvrir le fichier" << std::endl;
+	}
 	
 	std::ostream& operator<<(std::ostream& ost, const Formation& f)
 	{
