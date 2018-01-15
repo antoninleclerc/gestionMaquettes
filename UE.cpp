@@ -101,7 +101,7 @@ bool UE::supprimerECUE(const std::string &code)
 
 void UE::affiche(std::ostream &ost) const
 {	
-	if(nombreECUE()>0) //si UE composÈ de au moins un ECUE
+	if(nombreECUE()>0) //si UE compos√© de au moins un ECUE
 	{
 		ost<<std::setw(4)<<d_UE[0]->code()<<std::setw(4)<<d_UE[0]->coefficient()<<std::setw(4)<<ECTS()<<std::setw(20)<<" UE "<<d_UE[0]->intitule()<<std::endl;
 		for(int i=1; i<=nombreECUE(); i++)
@@ -113,21 +113,20 @@ void UE::affiche(std::ostream &ost) const
 	}		
 }
 
-void UE::enregistrerUE(const std::string &mention) const {
+void UE::enregistrerUE(const std::string &mention) {
 	std::ofstream fichier;
-	fichier.open("Sauvegarde/" + mention, std::ios::out | std::ios::app);
-	
-	
+	fichier.open("Sauvegarde/" + mention, std::ios::out | std::ios::app);	
+		
 	if(fichier){
-		if(nombreECUE()>0) //si UE composÈ de au moins un ECUE
+		if(nombreECUE()>0) //si UE compos√© de au moins un ECUE
 		{
-			fichier << std::setw(15) << std::left << d_UE[0]->code() << std::setw(10) << std::left << d_UE[0]->coefficient() << std::setw(4) << std::left << ECTS() << std::setw(40) << std::left << " UE " << d_UE[0]->intitule() << std::endl;
+			fichier << std::setw(10) << std::left << d_UE[0]->code() << std::setw(12) << std::left << d_UE[0]->coefficient() << std::setw(5) << std::left << ECTS() << std::setw(45) << std::left << "UE " + d_UE[0]->intitule() << std::endl;
 			for(int i = 1; i <= nombreECUE(); i++)
 				d_UE[i]->enregistrerECUE(mention);
 		}
 		else //si UE seule
 		{
-			fichier << std::setw(15) << std::left << d_UE[0]->code() << std::setw(10) << std::left << d_UE[0]->coefficient() << std::setw(4) << std::left << ECTS() << std::setw(40) << std::left << "UE " << d_UE[0]->intitule() << std::setw(4) << std::left << totalHeuresCM() << std::setw(4) << std::left << totalHeuresTD() << std::setw(4) << std::left << totalHeuresTP() << std::setw(4) << std::left << totalNombreHeures() << std::endl;
+			fichier << std::setw(10) << std::left << d_UE[0]->code() << std::setw(12) << std::left << d_UE[0]->coefficient() << std::setw(5) << std::left << ECTS() << std::setw(45) << std::left << "UE " + d_UE[0]->intitule() << std::setw(10) << std::left << totalHeuresCM() << std::setw(10) << std::left << totalHeuresTD() << std::setw(10) << std::left << totalHeuresTP() << std::setw(13) << std::left << totalNombreHeures() << std::endl;
 		}
 	}
 	else
