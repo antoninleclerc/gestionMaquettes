@@ -33,8 +33,6 @@ namespace GestionMaquettes
 			bool supprimerUE(std::string & code);
 			/** Fonction nombreUEDansMaquette
         		 *	@retourne le nombre d'UE dans une maquette
-			 	@param[out] nbUe - le nombre d'ue dans une maquette 
-	
          		*/
 			int nombreUEDansMaquette() const; 
 		
