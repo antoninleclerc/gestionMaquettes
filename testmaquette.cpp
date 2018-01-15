@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#incldue "Maquette.h"
+#include "Maquette.h"
 #include "Ue.h"
 
 TEST_CASE("Ajout d'une ue")
