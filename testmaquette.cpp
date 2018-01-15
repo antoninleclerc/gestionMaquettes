@@ -17,7 +17,7 @@ TEST_CASE("Suppression d'une UE")
 	int TD = 15 ;
 	int TP = 18 ; 
 	int ECTS = 3 ; 
-	UE ue (code, intitule, coefficient, CM, TD, TP, ECTS) ;
+	UE ue {code, intitule, coefficient, CM, TD, TP, ECTS} ;
 	ajouterUE(ue) ; 
 	int n=nombreUEDansMaquette() ; 
 	if (supprimerUE(code) == true) 
