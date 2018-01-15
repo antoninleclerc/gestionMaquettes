@@ -18,8 +18,7 @@ TEST_CASE("Suppression d'une UE")
 	int TP = 18 ; 
 	int ECTS = 3 ; 
 	UE ue {code, intitule, coefficient, CM, TD, TP, ECTS} ;
-	ajouterUE(ue) ; 
-	int n=nombreUEDansMaquette() ; 
+	ajouterUE(ue) ;  
 	if (supprimerUE(code) == true) 
 	{
 		REQUIRE(UeNumero(nombreUEDansMaquette().code()!=code ) ;
