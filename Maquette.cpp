@@ -45,7 +45,10 @@ namespace GestionMaquettes
 			return false;
 		}
 	}
-	
+	UE* Maquette::UeNumero(int numero)
+	{
+		return d_UE[numero-1];
+	}
 	int Maquette::nombreUEDansMaquette() const
 	{
 		return d_UE.size(); 
