@@ -10,11 +10,11 @@ namespace GestionMaquettes
 	{
 		public :
 			/** Constructeur d'une formation
-			*	@brief Constructeur d'une maquette à partir du nombre d'année, du domaine, de la mention et le parcours
-			*	@param[in] nombreAnnee - entier représentant le nombre d'année 
-			*	@param[in] domaine - chaine de caractère représentant le domaine
-			*	@param[in] mention - chaine de caractère représentant la mention
-			*	@param[in] parcours - chaine de caractère représentant le parcours
+			*	@brief Constructeur d'une maquette Ã  partir du nombre d'annÃ©e, du domaine, de la mention et le parcours
+			*	@param[in] nombreAnnee - entier reprÃ©sentant le nombre d'annÃ©e 
+			*	@param[in] domaine - chaine de caractÃ¨re reprÃ©sentant le domaine
+			*	@param[in] mention - chaine de caractÃ¨re reprÃ©sentant la mention
+			*	@param[in] parcours - chaine de caractÃ¨re reprÃ©sentant le parcours
 			**/
 			Formation(int nombreAnnee, const std::string domaine, const std::string mention, const std::string parcours); 
 			/** Destructeur d'une formation
@@ -47,7 +47,7 @@ namespace GestionMaquettes
 			int nombreMaquettes() const;
 			/**	Fonction modifierNombreAnnee
 			 *	Permet de modifier le nombre d'annee d'une formation
-		 	*	@param[in] nombreAnnee-  Le nouveau nombre d'année
+		 	*	@param[in] nombreAnnee-  Le nouveau nombre d'annÃ©e
 		 	*/
 			void modifierNombreAnnee(int nombreAnnee); 
 			/**	Fonction modifierDomaine
@@ -67,22 +67,22 @@ namespace GestionMaquettes
 			void modifierParcours(const std::string &parcours);
 			/** Fonction ajouterMaquette
 			*	Permet d'ajouter une maquette 
-			*	@param[in] maquette - Pointeur sur la maquette à ajouter
+			*	@param[in] maquette - Pointeur sur la maquette Ã  ajouter
 			*/
 			void ajouterMaquette(Maquette * m); 
 			/** Fonction supprimerMaquette
        			*	Retourne vrai si la suppression de la maquette s'est bien passee
-        		*	@param[in] numeroSemestre - entier représentant le semestre à supprrimer
+        		*	@param[out] numeroSemestre - entier reprÃ©sentant le semestre Ã  supprrimer
       			*/
 			bool supprimerMaquette (int numeroSemestre);
 			/** Fonction affiche
        			 *	Permet d'afficher la formation
-       			 *	@param[in] ost - Le flot à partir duquel va se faiire la lecture
+       			 *	@param[in] ost - Le flot Ã  partir duquel va se faiire la lecture
         		*/
 			void afficheFormation(std :: ostream & ost) const;
 			/** Fonction affiche
         		*	Permet d'afficher la liste des maquettes
-        		*	@param[in] ost - Le flot à partir duquel va se faiire la lecture
+        		*	@param[out] ost - Le flot Ã  partir duquel va se faiire la lecture
         		*/
 			void afficherListeMaquettes() const;
 			
@@ -90,7 +90,7 @@ namespace GestionMaquettes
 		
 		private :
 			/**
-    			* 	nombre d'année
+    			* 	nombre d'annÃ©e
     			*/
 			int d_nombreAnnee; 
 			/**
