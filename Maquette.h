@@ -18,7 +18,7 @@ namespace GestionMaquettes
 			~Maquette();
 			/** Fonction ajouterUE
 			*	Permet d'ajouter une UE au vecteur d'UE choix
-			*	@param[in] ue - Pointeur sur l'ue à ajouter
+			*	@param[in] ue - Pointeur sur l'ue Ã  ajouter
 			*/
 			void ajouterUE(UE * ue); 
 			/** Fonction affiche
@@ -27,7 +27,7 @@ namespace GestionMaquettes
 			void afficheMaquette(std::ostream & ost) const; 
 			/** Fonction supprimerUE
        			*	Retourne vrai si la suppression de l'UE s'est bien passee
-        		*	@param[in] code - chaine de caractère représentant le code de l'UE a supprrimer
+        		*	@param[in] code - chaine de caractÃ¨re reprÃ©sentant le code de l'UE a supprrimer
       			*/
 			bool supprimerUE(std::string & code);
 			/** Fonction nombreUEDansMaquette
@@ -36,11 +36,11 @@ namespace GestionMaquettes
 			int nombreUEDansMaquette() const; 
 		
 			/**	Fonction enregistrerMaquette
-			 *	Permet d'enregistrer une maquette dans le fichier txt portant le nom de la mention de la formation à laquelle appartient la maquette
+			 *	Permet d'enregistrer une maquette dans le fichier txt portant le nom de la mention de la formation Ã  laquelle appartient la maquette
 			 *	@param[in] mention : le nom du fichier txt
 			 */
 			void enregistrerMaquette(const std::string &mention) const;
-				
+			UE* Maquette::UeNumero(int numero) const ; 
 		private :
 			/**
 			*	vecteur de pointeur sur UE 
